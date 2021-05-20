@@ -1,6 +1,11 @@
 import express from 'express';
 import { database } from './dataLayer/database.js'
-import { create } from './dataLayer/entities/author.js'
+import * as Author from './dataLayer/entities/author.js'
+import { seedData } from './seed.js';
+
+//database.load();
+seedData();
+console.log(Author.getRecipies(Author.getAll()[1].id))
 
 let app = express();
 
@@ -15,19 +20,12 @@ function startServer(port) {
    });
 }
 
-database.load();
-
-//let authorTable = database.getTable("author");
-//authorTable.insert(create("Martin", "Vesely"));
-//authorTable.insert(create("Hladovec", "Obecny"));
-
-database.save();
-
-console.log(database);
-//console.log(authorTable);
-
 function declareEndpoints() {
    app.get('/helloworld', function (req, res) {
       res.end('Hello World!');
+   });
+
+   app.get('/authors/all', function (req, res) {
+      res.end(JSON.stringify(Author.getAll()));
    });
 }
