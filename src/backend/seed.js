@@ -1,37 +1,54 @@
-import * as Author from './dataLayer/entities/author.js'
-import * as Recipe from './dataLayer/entities/recipe.js'
-import * as RecipeCategory from './dataLayer/entities/recipeCategory.js'
-import * as RecipeIngredient from './dataLayer/entities/recipeIngredient.js'
-import * as Ingredients from './dataLayer/entities/ingredients.js'
+import { Author } from './entities/author.js'
+import { Recipe } from './entities/recipe.js'
+import { RecipeCategory } from './entities/recipeCategory.js'
+import { RecipeIngredient } from './entities/recipeIngredient.js'
+import { Ingredient } from './entities/ingredients.js'
+import { unitOfWork } from './dataLayer/unitOfWork.js'
+import { authorRepository } from './dataLayer/repositories/authorRepository.js'
 
 export function seedData() {
     seedAuthors();
     seedIngredients();
     seedRecipeCategory();
     seedRecipe();
+
+    unitOfWork.commit();
 }
 
 function seedAuthors() {
-    Author.create('Martin', 'Vesely', 'marty');
-    Author.create('Kamil', 'Virag', 'kalda');
-    Author.create('Jindrich', 'Jokel', 'jindra');
-    Author.create('David', 'Machek', 'dejv');
-    Author.create('Daniel', 'Vrsek', 'danielko');
+    let data = [
+        new Author('Martin', 'Vesely', 'marty'),
+        new Author('Kamil', 'Virag', 'kalda'),
+        new Author('Jindrich', 'Jokel', 'jindra'),
+        new Author('David', 'Machek', 'dejv'),
+        new Author('Daniel', 'Vrsek', 'danielko')
+    ];
+    unitOfWork.insertAll(data);
 }
 
 function seedIngredients() {
-    Ingredients.create("Vejce");
-    Ingredients.create("Mouka");
+    let data = [
+        new Ingredient("Vejce"),
+        new Ingredient("Mouka")
+    ];
+    unitOfWork.insertAll(data);
 }
 
 function seedRecipeCategory() {
-    var cakes = RecipeCategory.create("Dorty");
-    var cheesecakes = RecipeCategory.create("Cheesecake");
+    var cakes = new RecipeCategory("Dorty");
+    var cheesecakes = new RecipeCategory("Cheesecake");
+    unitOfWork.insert(cakes);
+    unitOfWork.insert(cheesecakes);
 
-    RecipeCategory.create("Cokoladove", cakes.id);
-    RecipeCategory.create("Ovocne", cheesecakes.id);
+    unitOfWork.insertAll([
+        new RecipeCategory("Cokoladove", cakes.id),
+        new RecipeCategory("Ovocne", cheesecakes.id)
+    ]);
 }
 
 function seedRecipe() {
-    Recipe.create("Vyborny cokoladovy dort", Author.getAll()[1].id, "Kratky popis", "Dlouhy popis", "50min.", "5 porci")
+    let data = [
+        new Recipe("Vyborny cokoladovy dort", authorRepository.getAll()[1].id, "Kratky popis", "Dlouhy popis", "50min.", "5 porci")
+    ];
+    unitOfWork.insertAll(data);
 }

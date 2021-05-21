@@ -1,0 +1,18 @@
+### Get all authors
+GET http://localhost:8080/authors
+
+### Create a new author
+POST http://localhost:8080/authors
+Content-Type: application/json
+
+{
+    "firstName": "David",
+    "lastName": "Koller",
+    "username": "kolly"
+}
+
+### Get all recipes
+GET http://localhost:8080/recipes
+
+### Get recipes filtered by author ID
+GET http://localhost:8080/recipes?authorId=8cca86ae-6616-8a6b-d199-8a769d400255

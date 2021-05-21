@@ -2,19 +2,75 @@
   "author": [
     {
       "firstName": "Martin",
-      "lastName": "Vesely"
+      "lastName": "Vesely",
+      "username": "marty",
+      "id": "22385deb-1de8-2316-049f-0076df6d458c"
     },
     {
-      "firstName": "Hladovec",
-      "lastName": "Obecny"
+      "firstName": "Kamil",
+      "lastName": "Virag",
+      "username": "kalda",
+      "id": "8cca86ae-6616-8a6b-d199-8a769d400255"
     },
     {
-      "firstName": "Martin",
-      "lastName": "Vesely"
+      "firstName": "Jindrich",
+      "lastName": "Jokel",
+      "username": "jindra",
+      "id": "704bde79-2a9d-958f-2f8f-7eea5aae98bf"
     },
     {
-      "firstName": "Hladovec",
-      "lastName": "Obecny"
+      "firstName": "David",
+      "lastName": "Machek",
+      "username": "dejv",
+      "id": "745dd202-01ef-ee5e-ce8e-a776b94782ec"
+    },
+    {
+      "firstName": "Daniel",
+      "lastName": "Vrsek",
+      "username": "danielko",
+      "id": "b65e7783-1bfd-4a29-9e40-8c670d202711"
     }
-  ]
+  ],
+  "ingredients": [
+    {
+      "name": "Vejce",
+      "id": "662b53ea-5233-e072-e9b1-65bb2a389523"
+    },
+    {
+      "name": "Mouka",
+      "id": "63a25740-3268-caf7-b451-11cb576971a2"
+    }
+  ],
+  "recipe": [
+    {
+      "name": "Vyborny cokoladovy dort",
+      "authorId": "8cca86ae-6616-8a6b-d199-8a769d400255",
+      "shortDescription": "Kratky popis",
+      "longDescription": "Dlouhy popis",
+      "prepararationLength": "50min.",
+      "servingSize": "5 porci",
+      "id": "184bfe5b-c07a-4873-e601-ca7ce75c0582"
+    }
+  ],
+  "recipeCategory": [
+    {
+      "name": "Dorty",
+      "id": "9cc18aff-aef5-b6ca-fdad-a19f89ded7b5"
+    },
+    {
+      "name": "Cheesecake",
+      "id": "de287754-11d6-dc8c-0851-738f9d959508"
+    },
+    {
+      "name": "Cokoladove",
+      "parentCategoryId": "9cc18aff-aef5-b6ca-fdad-a19f89ded7b5",
+      "id": "1e4a0717-2e92-b35a-a2a8-bb24b4d5fc71"
+    },
+    {
+      "name": "Ovocne",
+      "parentCategoryId": "de287754-11d6-dc8c-0851-738f9d959508",
+      "id": "bdea8757-e431-f3da-d43d-b71be1c9f5a3"
+    }
+  ],
+  "recipeIngredients": []
 }

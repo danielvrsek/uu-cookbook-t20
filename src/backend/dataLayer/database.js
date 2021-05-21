@@ -1,4 +1,9 @@
 import fs from 'fs'
+import { Author } from '../entities/author.js';
+import { Ingredient } from '../entities/ingredients.js';
+import { Recipe } from '../entities/recipe.js';
+import { RecipeCategory } from '../entities/recipeCategory.js';
+import { RecipeIngredient } from '../entities/recipeIngredient.js';
 
 class Database {
     constructor(name) {
@@ -18,15 +23,16 @@ class Database {
         let rawData = fs.readFileSync(this.getFileName());
         let dataObj = JSON.parse(rawData);
 
-        console.log(dataObj);
-
         for (let tableName in dataObj) {
-            let tableObj = dataObj[tableName];
-            let table = new Table(tableName);
-            table.load(tableObj);
+            let table = this.data[tableName];
+            if (!table) {
+                throw new Error(`Table ${tableName} is not defined`);
+            }
 
-            this.data[tableName] = table;
+            let tableObj = dataObj[tableName];
+            table.load(tableObj);
         }
+        console.log("Database has been loaded.");
     }
 
     save() {
@@ -34,11 +40,11 @@ class Database {
 
         for (let tableName in this.data) {
             let table = this.data[tableName];
-            rootObj[table.name] = table.data;
+            rootObj[table.name] = table.serialize();
         }
 
         fs.writeFileSync(this.getFileName(), JSON.stringify(rootObj, null, 2));
-        console.log("JSON data is saved.");
+        console.log("Database has been saved.");
     }
 
     getFileName() {
@@ -47,21 +53,32 @@ class Database {
 }
 
 class Table {
-    constructor(name) {
+    constructor(name, type) {
         this.name = name;
+        this.type = type;
         this.data = [];
     }
 
     load(data) {
-        this.data = data;
+        for (let entity of data) {
+            this.data.push(new (this.type)(...Object.values(entity)));
+        }
     }
 
     insert(row) {
         this.data.push(row);
     }
 
+    delete(id) {
+        this.data = this.data.filter(x => x.id !== id);
+    }
+
     getAll() {
         return this.data;
+    }
+
+    serialize() {
+        return this.data.map(x => x.serialize());
     }
 }
 
@@ -73,11 +90,11 @@ function createDatabase(name) {
 }
 
 function defineTables(database) {
-    database.defineTable(new Table("author"));
-    database.defineTable(new Table("ingredients"));
-    database.defineTable(new Table("recipe"));
-    database.defineTable(new Table("recipeCategory"));
-    database.defineTable(new Table("recipeIngredients"));
+    database.defineTable(new Table("author", Author));
+    database.defineTable(new Table("ingredients", Ingredient));
+    database.defineTable(new Table("recipe", Recipe));
+    database.defineTable(new Table("recipeCategory", RecipeCategory));
+    database.defineTable(new Table("recipeIngredients", RecipeIngredient));
 }
 
 export var database = createDatabase("cookbook");
