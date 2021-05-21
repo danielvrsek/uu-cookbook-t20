@@ -11,11 +11,11 @@ class AuthorController extends Controller {
             return this.serialize(data);
         }
 
-        if (filter.authorId) {
-            data = data.filter(x => x.authorId === filter.authorId);
-        }
-
         return this.serialize(data);
+    }
+
+    getAuthor(authorId) {
+        return this.serialize(authorRepository.getById(authorId));
     }
 
     createAuthor(input) {
@@ -27,6 +27,37 @@ class AuthorController extends Controller {
 
         let author = new Author(input.firstName, input.lastName, input.username);
         unitOfWork.insert(author);
+        unitOfWork.commit();
+    }
+
+    updateAuthor(authorId, input) {
+        if (!input) {
+            throw new ValidationError("Could not create author. Invalid input.");
+        }
+
+        this.validate(input);
+
+        let author = authorRepository.getById(authorId);
+        if (!author) {
+            throw new ValidationError(`Could not update author. Author with id '${authorId}' does not exist`);
+        }
+
+        author.firstName = input.firstName;
+        author.lastName = input.lastName;
+        author.username = input.username;
+        
+        unitOfWork.update(author);
+        unitOfWork.commit();
+    }
+
+    deleteAuthor(authorId) {
+        let author = authorRepository.getById(authorId);
+        if (!author) {
+            throw new ValidationError(`Could not delete author. Author with id '${authorId}' does not exist`);
+        }
+
+        unitOfWork.delete(author);
+        unitOfWork.commit();
     }
 
     validate(input) {

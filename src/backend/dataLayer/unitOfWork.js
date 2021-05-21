@@ -36,10 +36,10 @@ class UnitOfWork {
         Object.assign(result[0], entity);
     }
 
-    delete(entityId) {
+    delete(entity) {
         let tableName = getTableName(entity);
         let table = getTable(tableName);
-        table.delete(entityId);
+        table.delete(entity.id);
     }
 
     commit() {

@@ -5,6 +5,10 @@ class RecipeRepository extends Repository {
     constructor() {
         super(Recipe.tableName);
     }
+
+    getRecipies(authorId) {
+        return this.getAll().filter(x => x.authorId === authorId);
+    }
 }
 
 export var recipeRepository = new RecipeRepository();

@@ -15,8 +15,8 @@ export class Repository {
 
     getById(id) {
         let result = this.getAll().filter(x => x.id === id);
-        if (result.length <= 0) {
-            throw new Error(`Could not find an entity of type '${this.tableName}' with id '${id}'`);
+        if (result.length === 0) {
+            return null;
         }
         if (result.length > 1) {
             throw new Error(`There are multiple entries of type '${this.tableName}' with id '${id}'`);

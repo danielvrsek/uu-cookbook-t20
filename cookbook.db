@@ -29,6 +29,12 @@
       "lastName": "Vrsek",
       "username": "danielko",
       "id": "b65e7783-1bfd-4a29-9e40-8c670d202711"
+    },
+    {
+      "firstName": "David",
+      "lastName": "Koller",
+      "username": "kolly",
+      "id": "7d20090f-8b20-8ecb-4dea-a57772c5e568"
     }
   ],
   "ingredients": [
@@ -55,11 +61,11 @@
   "recipeCategory": [
     {
       "name": "Dorty",
-      "id": "9cc18aff-aef5-b6ca-fdad-a19f89ded7b5"
+      "parentCategoryId": "9cc18aff-aef5-b6ca-fdad-a19f89ded7b5"
     },
     {
       "name": "Cheesecake",
-      "id": "de287754-11d6-dc8c-0851-738f9d959508"
+      "parentCategoryId": "de287754-11d6-dc8c-0851-738f9d959508"
     },
     {
       "name": "Cokoladove",

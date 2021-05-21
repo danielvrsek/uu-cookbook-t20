@@ -1,5 +1,9 @@
 export class Controller {
-    serialize(authors) {
-        return authors.map(x => x.serialize());
+    serialize(data) {
+        if (Array.isArray(data)) {
+            return data.map(x => x.serialize());
+        }
+
+        return data.serialize();
     }
 }
