@@ -1,15 +1,14 @@
-import React, { Component} from "react";
-import {hot} from "react-hot-loader";
-import "./App.css";
+import React from "react";
+import { hot } from "react-hot-loader";
+import { useRoutes } from '@patched/hookrouter';
+import AuthorList from "./components/AuthorList";
 
-class App extends Component{
-  render(){
-    return(
-      <div className="App">
-        <h1> Hello, World!</h1>
-      </div>
-    );
-  }
+const routes = {
+    '/authors': () => <AuthorList />
+}
+
+const App = () => {
+    return useRoutes(routes) || (<h1>Index</h1>);
 }
 
 export default hot(module)(App);

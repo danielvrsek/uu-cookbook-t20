@@ -48,7 +48,7 @@ class Database {
     }
 
     getFileName() {
-        return `${this.name}.db`;
+        return `obj/${this.name}.db`;
     }
 }
 

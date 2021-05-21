@@ -25,7 +25,7 @@ Content-Type: application/json
 }
 
 ### Delete author
-DELETE http://localhost:8080/api/authors/e0a77455-f22b-c8d4-e68e-73e8df692997
+DELETE http://localhost:8080/api/authors/d94e942c-864a-a824-6bc0-4a69ca2c6c4f
 
 ### Get all recipes
 GET http://localhost:8080/api/recipes
