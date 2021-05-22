@@ -1,7 +1,8 @@
-import React, { Component} from "react";
+import React, { Component } from "react";
 import { apiClient } from "../api/ApiClient";
+import { AuthorList } from '../components/Author';
 
-export default class AuthorList extends Component{
+export default class AuthorListPage extends Component{
     constructor(props) {
         super(props);
 
@@ -14,15 +15,9 @@ export default class AuthorList extends Component{
             return "Loading...";
         }
 
-        return (
-            this.state.data.map(Author)
-        );
+        return <>
+            <h1>List of all authors</h1>
+            <AuthorList data={this.state.data} />
+        </>;
     }
-}
-
-function Author(props) {
-    return <div key={props.id}>
-        {props.firstName} {props.lastName}
-        <br />
-    </div>;
 }

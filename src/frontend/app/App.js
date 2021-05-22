@@ -1,14 +1,22 @@
 import React from "react";
-import { hot } from "react-hot-loader";
 import { useRoutes } from '@patched/hookrouter';
-import AuthorList from "./components/AuthorList";
+import AuthorListPage from "./pages/AuthorListPage";
+import AuthorEditPage from "./pages/AuthorEditPage";
+import MainLayout from "./common/MainLayout";
+import IndexPage from "./pages/IndexPage";
 
 const routes = {
-    '/authors': () => <AuthorList />
+    '/': () => <IndexPage />,
+    '/authors': () => <AuthorListPage />,
+    '/authors/:authorId': ({ authorId }) => <AuthorEditPage authorId={authorId} />
 }
 
 const App = () => {
-    return useRoutes(routes) || (<h1>Index</h1>);
+    return (
+        <MainLayout>
+            {useRoutes(routes) || <h1>Not found</h1>}
+        </MainLayout>
+    );
 }
 
-export default hot(module)(App);
+export default App;

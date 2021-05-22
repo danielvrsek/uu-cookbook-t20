@@ -4,15 +4,27 @@ class ApiClient {
     }
 
     getAuthors(filter, callback) {
-        this.fetchApi("GET", "/api/authors", callback);
+        this.fetchApi("GET", "/api/authors", null, callback);
     }
 
-    fetchApi(method, url, callback) {
+    getAuthor(authorId, callback) {
+        this.fetchApi("GET", `/api/authors/${authorId}`, null, callback);
+    }
+
+    editAuthor(authorId, payload, callback) {
+        this.fetchApi("POST", `/api/authors/${authorId}`, payload, callback);
+    }
+
+    fetchApi(method, url, body, callback) {
         let options = {
-            method
+            method,
+            headers: (body && {
+                "Content-Type": "application/json"
+            }) || undefined,
+            body: body && JSON.stringify(body)
         };
     
-        return fetch(baseUri + url, options)
+        return fetch(this.baseUri + url, options)
             .then((res) => res.json())
             .then((res) => callback(res.data));
     }
