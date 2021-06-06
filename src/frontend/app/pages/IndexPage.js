@@ -11,7 +11,7 @@ export default class IndexPage extends Component{
 
     render() {
         return <>
-            <h1>Index</h1>
+            <h1>INDEX</h1>
         </>;
     }
 }

@@ -4,6 +4,8 @@ import AuthorListPage from "./pages/AuthorListPage";
 import AuthorEditPage from "./pages/AuthorEditPage";
 import MainLayout from "./common/MainLayout";
 import IndexPage from "./pages/IndexPage";
+import './App.css';
+
 
 const routes = {
     '/': () => <IndexPage />,
