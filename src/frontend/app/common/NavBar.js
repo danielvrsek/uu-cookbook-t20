@@ -32,7 +32,7 @@ class NavBar extends Component {
                         )
                     })}
                     <li>
-                        <h1 className="navbar-logo"><i className="far fa-question-circle"></i></h1>
+                        <h1 className="nav-links"><i className="far fa-question-circle"></i></h1>
                     </li>
 
                 </ul>

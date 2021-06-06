@@ -37,6 +37,7 @@ fa-react {
     text-decoration: none;
     padding: 0.5rem 1rem;
     margin-left: 5rem;
+    font-size: medium;
 }
 
 .nav-links:hover {
@@ -57,7 +58,9 @@ fa-react {
     display: none;
 }
 
-@media screen and (max-width: 960px) {
+
+
+@media screen and (max-width: 1124px) { 
     .nav-menu {
         display: flex;
         flex-direction: column;
@@ -93,6 +96,7 @@ fa-react {
     }
 
 .navbar-logo {
+    display: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -111,3 +115,12 @@ fa-react {
 }
 
 }
+
+
+/*
+@media screen and (max-width: 360px) {
+    .navbar-logo {
+        display: none;
+    }
+}
+*/
