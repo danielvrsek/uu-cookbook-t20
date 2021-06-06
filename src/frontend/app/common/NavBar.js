@@ -4,6 +4,7 @@ import { NavItems } from '../components/NavItems';
 import './NavBar.css';
 import '../components/Button';
 import { Button } from '../components/Button';
+import { Link } from 'react-router-dom';
 
 
 class NavBar extends Component {
@@ -15,7 +16,7 @@ class NavBar extends Component {
     render() {
         return(
             <nav className="NavItems">
-                <h1 className="navbar-logo"><img src="../navbar-logo.png" width = "260" height ="210"></img></h1>
+                <h1 className="navbar-logo"><Link to ="/"><img src="../navbar-logo.png" width = "260" height ="210"></img></Link></h1>
                 <div className="menu-icon" onClick={this.handleClick}>
                     <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
                 </div>

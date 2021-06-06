@@ -2,22 +2,22 @@
 export const NavItems = [
     {
         label: "Oblíbené recepty",
-        url: "#",
+        url: "/favourites",
         cName: "nav-links"
     },
     {
         label: "Kategorie receptů",
-        url: "#",
+        url: "categories",
         cName: "nav-links"
     },
     {
         label: "Blog",
-        url: "#",
+        url: "/blog",
         cName: "nav-links"
     },
     {
         label: "Přihlásit se",
-        url: "#",
+        url: "/login",
         cName: "nav-links"
     }
 
