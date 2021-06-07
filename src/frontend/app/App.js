@@ -2,7 +2,7 @@ import React from "react";
 import { useRoutes } from '@patched/hookrouter';
 import AuthorListPage from "./pages/AuthorListPage";
 import AuthorEditPage from "./pages/AuthorEditPage";
-import MainLayout from "./common/MainLayout";
+import MainLayout from "./shared/MainLayout";
 import IndexPage from "./pages/IndexPage";
 
 const routes = {

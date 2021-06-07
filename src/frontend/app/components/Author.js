@@ -1,6 +1,7 @@
 import { A } from "@patched/hookrouter";
 import React, { Component } from "react";
 import { apiClient } from "../api/ApiClient";
+import { Form, Submit, TextInput } from "../common/Forms";
 
 export function AuthorList(props) {
     return (
@@ -38,11 +39,9 @@ export class AuthorEditForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleInputChange(event) {
-        const target = event.target;
-
+    handleInputChange(name, value) {
         this.setState({
-          [target.name]: target.value
+          [name]: value
         });
     }
 
@@ -59,24 +58,15 @@ export class AuthorEditForm extends Component {
 
     render() {
         return <>
-            <form onSubmit={this.handleSubmit}>
-                <label>
-                    First name: 
-                    <input type="text" name="firstName" value={this.state.firstName} onChange={this.handleInputChange} />
-                </label>
+            <Form onSubmit={this.handleSubmit}>
+                <TextInput name="firstName" label="First name" value={this.state.firstName} onChange={this.handleInputChange} />
                 <br />
-                <label>
-                    Last name: 
-                    <input type="text" name="lastName" value={this.state.lastName} onChange={this.handleInputChange} />
-                </label>
+                <TextInput name="lastName" label="Last name" value={this.state.lastName} onChange={this.handleInputChange} />
                 <br />
-                <label>
-                    Username:
-                    <input type="text" name="username" value={this.state.username} onChange={this.handleInputChange} />
-                </label>
+                <TextInput name="username" label="Username" value={this.state.username} onChange={this.handleInputChange} />
                 <br />
-                <input type="submit" value="Submit" />
-            </form>
+                <Submit value="Save" />
+            </Form>
         </>;
     }
     
