@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { apiClient } from "../api/ApiClient";
+import MainLayout from "../common/MainLayout";
 import { AuthorList } from '../components/Author';
 
 export default class IndexPage extends Component{
@@ -11,7 +12,7 @@ export default class IndexPage extends Component{
 
     render() {
         return <>
-            <h1>Index</h1>
+         <h1>Home</h1>
         </>;
     }
 }
