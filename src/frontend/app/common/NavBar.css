@@ -1,5 +1,6 @@
 .NavItems {
     background: linear-gradient(90deg, rgb(15, 1, 139) 0%, rgb(52, 121, 161) 100%);
+    border: black;
     height: 80px;
     display: flex;
     justify-content: center;
@@ -17,7 +18,7 @@
     
 }
 
-fa-react {
+.fa-react {
     margin-left: 0.5rem;
     font-size: 1.6rem;
 }

@@ -11,23 +11,28 @@ import Login from "./pages/Login";
 import Categories from "./pages/Categories";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
+import './components/Env.css';
+import Recipe from "./components/recipes/Recipe";
 
 
 
 
-const routes = {
+/* const routes = {
     '/': () => <IndexPage />,
     '/authors': () => <AuthorListPage />,
     '/authors/:authorId': ({ authorId }) => <AuthorEditPage authorId={authorId} />
 }
-
+ */
 function App() {
 
 
     return (
-        
+       
         <Router>
+            
             <MainLayout />
+            
+            
                 <Switch>
                 
                     <Route exact path="/">
@@ -60,6 +65,7 @@ function App() {
                 </Switch>
             
         </Router>
+        
     );
 
 }
