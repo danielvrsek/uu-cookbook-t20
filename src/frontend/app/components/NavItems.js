@@ -7,7 +7,7 @@ export const NavItems = [
     },
     {
         label: "Kategorie receptů",
-        url: "categories",
+        url: "/categories",
         cName: "nav-links"
     },
     {

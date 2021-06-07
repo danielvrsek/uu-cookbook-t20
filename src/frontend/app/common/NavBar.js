@@ -23,9 +23,9 @@ class NavBar extends Component {
                     {NavItems.map((item, index) => {
                         return (
                             <li key={index}>
-                                <a className={item.cName} href={item.url}>
+                                <A className={item.cName} href={item.url}>
                                 {item.label}
-                                </a>
+                                </A>
                             </li>
                             
                         )
