@@ -1,3 +1,12 @@
+### Login
+POST http://localhost:8080/api/login
+Content-Type: application/json
+
+{
+    "username": "danielko",
+    "password": "test"
+}
+
 ### Get all authors
 GET http://localhost:8080/api/authors
 

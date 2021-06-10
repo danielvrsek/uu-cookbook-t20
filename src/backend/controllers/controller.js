@@ -4,6 +4,17 @@ export class Controller {
             return data.map(x => x.serialize());
         }
 
-        return data.serialize();
+        if (data.serialize){
+            data.serialize();
+        }
+        
+        return data;
+    }
+
+    error(message) {
+        return {
+            status: "error",
+            message
+        };
     }
 }

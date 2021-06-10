@@ -17,11 +17,11 @@ export function seedData() {
 
 function seedAuthors() {
     let data = [
-        new Author('Martin', 'Vesely', 'marty'),
-        new Author('Kamil', 'Virag', 'kalda'),
-        new Author('Jindrich', 'Jokel', 'jindra'),
-        new Author('David', 'Machek', 'dejv'),
-        new Author('Daniel', 'Vrsek', 'danielko')
+        new Author('Martin', 'Vesely', 'marty', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08'),
+        new Author('Kamil', 'Virag', 'kalda', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08'),
+        new Author('Jindrich', 'Jokel', 'jindra', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08'),
+        new Author('David', 'Machek', 'dejv', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08'),
+        new Author('Daniel', 'Vrsek', 'danielko', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08')
     ];
     unitOfWork.insertAll(data);
 }

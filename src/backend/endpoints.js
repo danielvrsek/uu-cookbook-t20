@@ -1,6 +1,8 @@
 import { authorController } from "./controllers/authorController.js";
+import { authorizationController } from "./controllers/authorizationController.js";
 import { recipeController } from "./controllers/recipeController.js";
 import { ValidationError } from "./errors.js"
+import { authorizationService } from "./services/authorizationService.js";
 
 export function declareEndpoints(app) {
     // ******** AUTHORS ********
@@ -13,15 +15,15 @@ export function declareEndpoints(app) {
     });
 
     app.put('/api/authors', function (req, res) {
-        handleResponse(res, () => authorController.createAuthor(req.body));
+        handleAuthorizedResponse(req, res, () => authorController.createAuthor(req.body));
     });
 
     app.post('/api/authors/:authorId', function (req, res) {
-        handleResponse(res, () => authorController.updateAuthor(req.params.authorId, req.body));
+        handleAuthorizedResponse(req, res, () => authorController.updateAuthor(req.params.authorId, req.body));
     });
 
     app.delete('/api/authors/:authorId', function (req, res) {
-        handleResponse(res, () => authorController.deleteAuthor(req.params.authorId));
+        handleAuthorizedResponse(req, res, () => authorController.deleteAuthor(req.params.authorId));
     });
     // ******** AUTHORS ********
 
@@ -30,6 +32,23 @@ export function declareEndpoints(app) {
         handleResponse(res, () => recipeController.getRecipes(req.query));
     });
     // ******** RECIPES ********
+
+    // ******** AUTHORIZATION ********
+    app.post('/api/login', function (req, res) {
+        handleResponse(res, () => authorizationController.login(req.body.username, req.body.password));
+    });
+    // ******** AUTHORIZATION ********
+
+ }
+
+ function handleAuthorizedResponse(req, res, handler) {
+    let token = req.header("Token");
+    if (!token || authorizationService.validateToken(token)) {
+        res.status(401).send();
+        return;
+    }
+
+    handleResponse(res, handler);
  }
 
  function handleResponse(res, handler) {
