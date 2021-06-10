@@ -4,12 +4,21 @@ import { NavItems } from '../components/NavItems';
 import './NavBar.css';
 import '../components/Button';
 import { Button } from '../components/Button';
+import '../components/LoginForm.css'
+
 
 class NavBar extends Component {
-    state = { clicked: false };
+    
+    state = { clicked: false,
+            loginClicked: false };
+
+    handleLoginClick = () => {
+        this.setState({loginClicked: !this.state.loginClicked});
+    }
 
     handleClick = () => {
         this.setState({clicked: !this.state.clicked});
+        
     }
     render() {
         return(
@@ -35,7 +44,9 @@ class NavBar extends Component {
                     </li>
 
                 </ul>
-                <Button>Registrace</Button>
+                <div><A href ="/login">
+                    <Button>Přihlásit se</Button></A>
+                    </div>
             </nav>
         )
     }

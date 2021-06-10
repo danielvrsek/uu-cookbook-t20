@@ -14,11 +14,6 @@ export const NavItems = [
         label: "Blog",
         url: "/blog",
         cName: "nav-links"
-    },
-    {
-        label: "Přihlásit se",
-        url: "/login",
-        cName: "nav-links"
     }
 
 ]
