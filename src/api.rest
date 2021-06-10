@@ -16,6 +16,7 @@ GET http://localhost:8080/api/authors/b65e7783-1bfd-4a29-9e40-8c670d202711
 ### Create a new author
 PUT http://localhost:8080/api/authors
 Content-Type: application/json
+Token: eyJ1c2VybmFtZSI6ImRhbmllbGtvIiwicm9sZSI6ImVkaXRvciJ9
 
 {
     "firstName": "David",
@@ -26,6 +27,7 @@ Content-Type: application/json
 ### Update author
 POST http://localhost:8080/api/authors/e0a77455-f22b-c8d4-e68e-73e8df692997
 Content-Type: application/json
+Token: eyJ1c2VybmFtZSI6ImRhbmllbGtvIiwicm9sZSI6ImVkaXRvciJ9
 
 {
     "firstName": "David",
@@ -35,6 +37,7 @@ Content-Type: application/json
 
 ### Delete author
 DELETE http://localhost:8080/api/authors/d94e942c-864a-a824-6bc0-4a69ca2c6c4f
+Token: eyJ1c2VybmFtZSI6ImRhbmllbGtvIiwicm9sZSI6ImVkaXRvciJ9
 
 ### Get all recipes
 GET http://localhost:8080/api/recipes

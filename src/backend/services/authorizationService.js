@@ -23,10 +23,12 @@ class AuthorizationService {
             data = JSON.parse(buff.toString('utf-8'));
         }
         catch (e) {
+            console.warn(`Failed to parse token '${token}' with error '${e.toString()}`)
             return false;
         }
 
         if (data.role !== "editor"){
+            console.warn(`User '${data.username}' does not have access with role ${data.role}`)
             return false;
         }
 

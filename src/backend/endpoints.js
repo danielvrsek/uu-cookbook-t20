@@ -1,7 +1,7 @@
 import { authorController } from "./controllers/authorController.js";
 import { authorizationController } from "./controllers/authorizationController.js";
 import { recipeController } from "./controllers/recipeController.js";
-import { ValidationError } from "./errors.js"
+import { AuthorizationError, ValidationError } from "./errors.js"
 import { authorizationService } from "./services/authorizationService.js";
 
 export function declareEndpoints(app) {
@@ -43,7 +43,9 @@ export function declareEndpoints(app) {
 
  function handleAuthorizedResponse(req, res, handler) {
     let token = req.header("Token");
-    if (!token || authorizationService.validateToken(token)) {
+    console.log(`Received authorization token '${token}'`)
+    if (!token || !authorizationService.validateToken(token)) {
+        console.warn(`Invalid token '${token}'`)
         res.status(401).send();
         return;
     }
@@ -69,6 +71,9 @@ export function declareEndpoints(app) {
                     message: err.message
                 }
             });
+        }
+        else if (err instanceof AuthorizationError) {
+            res.status(401).send();
         }
         else {
             res.status(500).send({

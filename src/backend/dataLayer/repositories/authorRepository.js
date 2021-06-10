@@ -7,7 +7,7 @@ class AuthorRepository extends Repository {
     }
 
     getByUsername(username) {
-        let author = this.getAll().find(x => x.username === username)[0];
+        let author = this.getAll().filter(x => x.username === username)[0];
         return author ? author : null;
     }
 }
