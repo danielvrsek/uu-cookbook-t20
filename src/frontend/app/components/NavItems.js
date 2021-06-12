@@ -13,10 +13,10 @@ export const NavItems = [
         img: "fas fa-list"
     },
     {
-        label: "O nás",
+        label: "Autoři",
         url: "/contact",
         cName: "nav-links",
-        img: "fas fa-question-circle"
+        img: "fas fa-user-friends"
     
     }
 

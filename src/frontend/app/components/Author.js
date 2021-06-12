@@ -12,12 +12,13 @@ export function AuthorList(props) {
         <ul>
             {props.data.map(x => (
 
-                <li>
+                <li className="author-list">
 
 
                     <AuthorDetail {...x} />
-                    <A key={x.id} href={getAuthorLink(x.id)}><i class="fas fa-pen"></i> <i class="fas fa-user-times"></i>
-                    </A>
+                    <A key={x.id} href={getAuthorLink(x.id)}> &nbsp; <i class="fas fa-pen"></i></A>
+                     &nbsp; <i class="fas fa-user-times"></i>
+                    
 
                 </li>
 

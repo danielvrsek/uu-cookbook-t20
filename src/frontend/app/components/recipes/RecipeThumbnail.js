@@ -18,7 +18,7 @@ export default class RecipeThumbnail extends Component {
 							</li>
 							<li className="d-flex align-items-center me-3">
 								<svg className="bi me-2" width="1em" height="1em"><use xlinkHref="#geo-fill"></use></svg>
-								<small>{this.props.servingSize} porce</small>
+								<small>porce: {this.props.servingSize} </small>
 							</li>
 							<li className="d-flex align-items-center">
 							<svg className="bi me-2" width="1em" height="1em"><use xlinkHref="#calendar3"></use></svg>

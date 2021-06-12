@@ -111,6 +111,8 @@ label {
 
 .author-list {
     list-style: none;
+    justify-content: center;
+    align-items:flex-start ;
 }
 
 .author-list-box {

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import '../../components/LoginForm.css';
 
 export class Form extends Component {
     constructor(props) {
@@ -14,7 +15,7 @@ export class Form extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit} className={`form-control ${this.props.customClass}`}>
+            <form onSubmit={this.handleSubmit}>
                 {this.props.children}
             </form>
         );

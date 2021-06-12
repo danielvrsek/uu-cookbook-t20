@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 
-export default class NumberInput extends Component {
+export default class TextArea extends Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
+        
     }
 
     handleChange(event) {
@@ -12,11 +13,13 @@ export default class NumberInput extends Component {
     }
 
     render() {
+        
         return (
-            <label class="text-secondary">
-                {this.props.label}: &nbsp; &nbsp;
-                <input type="number" name={this.props.name} value={this.props.value} onChange={this.handleChange} />
-            </label>
+        
+                
+                <input class="input-large search-query" type="text" name={this.props.name} value={this.props.value} onChange={this.handleChange} />
+            
         );
     }
 }
+
