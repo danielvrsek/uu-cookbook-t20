@@ -4,6 +4,7 @@ export default class TextInput extends Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
+        
     }
 
     handleChange(event) {
@@ -13,9 +14,9 @@ export default class TextInput extends Component {
 
     render() {
         return (
-            <label>
+            <label className="text-secondary"> &nbsp;
                 {this.props.label}:
-                <input type="text" name={this.props.name} value={this.props.value} onChange={this.handleChange} className="login-box" onKeyDown={this.props.onKeyDown} />
+                <input className="form-control" type="text" name={this.props.name} value={this.props.value} onChange={this.handleChange} onKeyDown={this.props.onKeyDown} />
             </label>
         );
     }

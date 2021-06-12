@@ -124,3 +124,11 @@ label {
     border-radius: 20px;
     box-shadow: 10px 10px 10px 1px rgba(10, 2, 78, 0.2);
 }
+
+.recipe-layout {
+border-radius: 2px;
+  background-color: #858585;
+  padding: 20px;
+  align-content: center;
+  justify-content: center;
+}

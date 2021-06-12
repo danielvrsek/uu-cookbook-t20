@@ -80,7 +80,10 @@ export class AuthorEditForm extends Component {
                         <br />
                         <TextInput name="username" label="Přezdívka" value={this.state.username} onChange={this.handleInputChange} />
                         <br />
+                        <br />
                         <Submit value="Uložit" />
+                        <br />
+                        <br />
                     </div>
                 </div>
             </Form>
