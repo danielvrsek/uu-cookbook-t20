@@ -17,6 +17,8 @@
     "@popperjs/core": "^2.9.2",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.5",
+    "postcss-loader": "^6.1.0",
+    "sass-loader": "^12.1.0",
     "style-loader": "^2.0.0",
     "webpack": "^5.37.1",
     "webpack-cli": "^4.7.0",
