@@ -6,6 +6,7 @@ export default function MainLayout(props) {
 
 
     return (
+        
         <div className="main">
             <div className="nav">
 

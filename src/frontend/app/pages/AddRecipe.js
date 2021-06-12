@@ -51,7 +51,8 @@ export default class AddRecipe extends Component {
                         <label for="exampleFormControlTextarea1">Example textarea</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
                     </div>
-                    
+                    <br />
+                    <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#addForm" data-whatever="@mdo">Přidat recept</button>
                 </form>
             </div>
         </>

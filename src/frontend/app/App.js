@@ -23,12 +23,13 @@ const routes = {
     '/login': () => <Login />,
     '/categories': () => <Categories />,
     '/recipe': () => <Recipes />,
-    '/contact': () => <Contact />,
+    '/contact': () => <AuthorListPage />,
     '/addrecipe' : () => <AddRecipe />
 }
  
 const App = () => {
     return (
+        
         <MainLayout>
             {useRoutes(routes) || <h1>Not found</h1>}
         </MainLayout>
