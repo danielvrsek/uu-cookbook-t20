@@ -12,6 +12,7 @@ import Categories from "./pages/Categories";
 import Contact from "./pages/Contact";
 import './components/Env.css';
 import Recipes from "./pages/Recipes";
+import AddRecipe from "./pages/AddRecipe";
 
 
 
@@ -22,7 +23,8 @@ const routes = {
     '/login': () => <Login />,
     '/categories': () => <Categories />,
     '/recipe': () => <Recipes />,
-    '/contact': () => <Contact />
+    '/contact': () => <Contact />,
+    '/addrecipe' : () => <AddRecipe />
 }
  
 const App = () => {
