@@ -8,19 +8,19 @@ class AuthorizationService {
             throw new AuthorizationError("Authorization failed.");
         }
 
-        let buff = Buffer.from(JSON.stringify({
+        let data = {
             username,
             role: "editor"
-        }));
-        return buff.toString('base64');
+        };
+
+        return this.serializeToken(data);
     }
 
     validateToken(token) {
         // Simple validation without source verification
         let data;
         try {
-            let buff = Buffer.from(token, 'base64');
-            data = JSON.parse(buff.toString('utf-8'));
+            data = this.deserializeToken(token);
         }
         catch (e) {
             console.warn(`Failed to parse token '${token}' with error '${e.toString()}`)
@@ -33,6 +33,12 @@ class AuthorizationService {
         }
 
         return true;
+    }
+
+    getUsernameFromToken(token) {
+        let data = this.deserializeToken(token);
+
+        return data.username;
     }
 
     validateUser(username, password) {
@@ -49,6 +55,16 @@ class AuthorizationService {
         }
 
         return true;
+    }
+
+    serializeToken(data) {
+        let buff = Buffer.from(JSON.stringify(data));
+        return buff.toString('base64');
+    }
+
+    deserializeToken(token) {
+        let buff = Buffer.from(token, 'base64');
+        return JSON.parse(buff.toString('utf-8'));
     }
 }
 

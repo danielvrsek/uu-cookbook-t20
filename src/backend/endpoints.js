@@ -2,6 +2,7 @@ import { authorController } from "./controllers/authorController.js";
 import { authorizationController } from "./controllers/authorizationController.js";
 import { recipeController } from "./controllers/recipeController.js";
 import { AuthorizationError, ValidationError } from "./errors.js"
+import { requestContext } from "./http/RequestContext.js";
 import { authorizationService } from "./services/authorizationService.js";
 
 export function declareEndpoints(app) {
@@ -14,11 +15,11 @@ export function declareEndpoints(app) {
         handleResponseAsync(res, () => authorController.getAuthor(req.params.authorId));
     });
 
-    app.put('/api/authors', function (req, res) {
+    app.post('/api/authors', function (req, res) {
         handleAuthorizedResponseAsync(req, res, () => authorController.createAuthorAsync(req.body));
     });
 
-    app.post('/api/authors/:authorId', function (req, res) {
+    app.put('/api/authors/:authorId', function (req, res) {
         handleAuthorizedResponseAsync(req, res, () => authorController.updateAuthorAsync(req.params.authorId, req.body));
     });
 
@@ -31,6 +32,10 @@ export function declareEndpoints(app) {
     app.get('/api/recipes', function (req, res) {
         handleResponseAsync(res, () => recipeController.getRecipes(req.query));
     });
+
+    app.post('/api/recipes', function (req, res) {
+        handleAuthorizedResponseAsync(req, res, () => recipeController.createRecipeAsync(req.body));
+    });
     // ******** RECIPES ********
 
     // ******** AUTHORIZATION ********
@@ -38,7 +43,6 @@ export function declareEndpoints(app) {
         handleResponseAsync(res, () => authorizationController.login(req.body.username, req.body.password));
     });
     // ******** AUTHORIZATION ********
-
  }
 
  async function handleAuthorizedResponseAsync(req, res, handler) {
@@ -50,6 +54,8 @@ export function declareEndpoints(app) {
         return;
     }
 
+    console.log(token);
+    requestContext.authorization.username = authorizationService.getUsernameFromToken(token);
     await handleResponseAsync(res, handler);
  }
 

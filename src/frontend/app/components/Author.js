@@ -1,7 +1,9 @@
 import { A } from "@patched/hookrouter";
 import React, { Component } from "react";
 import { apiClient } from "../api/ApiClient";
-import { Form, Submit, TextInput } from "../common/Forms";
+import { Form } from "../common/forms/Form";
+import Submit from "../common/forms/Submit";
+import TextInput from "../common/forms/TextInput";
 import '../components/LoginForm.css';
 
 export function AuthorList(props) {

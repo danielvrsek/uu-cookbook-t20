@@ -3,8 +3,16 @@ class ApiClient {
         this.baseUri = baseUri;
     }
 
+    login(credentials, callback) {
+        this.fetchApi("POST", "/api/login", credentials, callback);
+    }
+
     getRecipes(callback) {
         this.fetchApi("GET", "/api/recipes", null, callback);
+    }
+
+    createRecipe(input, callback) {
+        this.fetchApi("POST", "/api/recipes", input, callback);
     }
 
     getAuthors(filter, callback) {
@@ -16,13 +24,14 @@ class ApiClient {
     }
 
     editAuthor(authorId, payload, callback) {
-        this.fetchApi("POST", `/api/authors/${authorId}`, payload, callback);
+        this.fetchApi("PUT", `/api/authors/${authorId}`, payload, callback);
     }
 
     fetchApi(method, url, body, callback) {
         let options = {
             method,
             headers: (body && {
+                "Token": "eyJ1c2VybmFtZSI6ImRhbmllbGtvIiwicm9sZSI6ImVkaXRvciJ9",
                 "Content-Type": "application/json"
             }) || undefined,
             body: body && JSON.stringify(body)

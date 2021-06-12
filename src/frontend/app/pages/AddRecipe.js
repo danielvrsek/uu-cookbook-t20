@@ -1,61 +1,73 @@
 import React, { Component } from 'react';
+import { apiClient } from '../api/ApiClient';
+import NumberInput from '../common/forms/NumberInput';
+import Submit from '../common/forms/Submit';
+import TextInput from '../common/forms/TextInput';
+import Select from '../common/forms/Select';
+import { Form } from '../common/forms/Form';
 
 
 export default class AddRecipe extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { ...props };
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleInputChange(name, value) {
+        this.setState({
+            [name]: value
+        });
+    }
+
+    handleSubmit(event) {
+        const data = {
+            title: this.state.title,
+            servingSize: this.state.servingSize,
+            preparationLength: this.state.preparationLength,
+            longDescription: this.state.longDescription
+        }
+
+        apiClient.createRecipe(this.state, data, () => { })
+        event.preventDefault();
+    }
+
     render() {
 
         return <>
-            <div class="contrainer-fluid">
-                <form>
-
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1" class="text-secondary">Název</label>
-                        <input class="form-control" id="exampleFormControlInput1" data-role="tagsinput"/>
-                    </div>
-
-                    <div class="form-group">
+            <Form onSubmit={this.handleSubmit}>
+                <div className="login-form">
+                    <div className="form-box solid">
+                        <h1 className="login-text">Úprava</h1>
+                        <br></br>
+                        <TextInput name="title" label="Název" value={this.state.title} onChange={this.handleInputChange} />
                         <br />
-                        <label for="exampleFormControlInput1" class="text-secondary">Kategorie</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>Pečený</option>
-                            <option>Nepečený</option>
-                            <option>Vegan</option>
-                        </select>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-
-                            <label for="exampleFormControlInput1" class="text-secondary">Počet porcí</label>
-                            <select type="text" class="form-control" placeholder="Počet porcí" aria-label="First name">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                        <div class="col">
-
-                            <label for="exampleFormControlInput1" class="text-secondary">Čas na přípravu</label>
-
-                            <select type="text" class="form-control" placeholder="Čas na přípravu (min)" aria-label="First name">
-                                <option>15</option>
-                                <option>30</option>
-                                <option>45</option>
-                                <option>60</option>
-                                <option>75</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
+                        <Select onChange={this.handleInputChange} data={[
+                            {
+                                key: "0",
+                                value: "Pecene"
+                            },
+                            {
+                                key: "1",
+                                value: "Nepecene"
+                            },
+                            {
+                                key: "2",
+                                value: "Vegan"
+                            }
+                        ]} />
                         <br />
-                    <label for="exampleFormControlInput1" class="text-secondary">Příprava</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                        <NumberInput name="servingSize" label="Počet porcí" value={this.state.servingSize} onChange={this.handleInputChange} />
+                        <br />
+                        <NumberInput name="preparationLength" label="Čas na přípravu" value={this.state.preparationLength} onChange={this.handleInputChange} />
+                        <br />
+                        <TextInput name="longDescription" label="Priprava" value={this.state.longDescription} onChange={this.handleInputChange} />
+                        <br />
+                        <Submit value="Uložit" />
                     </div>
-                    <br />
-                    <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#addForm" data-whatever="@mdo">Přidat recept</button>
-                </form>
-            </div>
+                </div>
+            </Form>
         </>
     }
 }

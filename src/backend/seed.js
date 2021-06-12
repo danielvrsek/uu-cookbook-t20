@@ -50,12 +50,12 @@ function seedRecipe() {
     let authors = authorRepository.getAll();
 
     let data = [
-        new Recipe("Cokoladovy dort", authors[0].id, "Kratky popis", "Dlouhy popis", 50, 5),
-        new Recipe("Slehackovy dort", authors[1].id, "Kratky popis", "Dlouhy popis", 50, 5),
-        new Recipe("Babovka", authors[1].id, "Kratky popis", "Dlouhy popis", 50, 5),
-        new Recipe("Malinovy chesecake", authors[2].id, "Kratky popis", "Dlouhy popis", 50, 5),
-        new Recipe("Chesecake z lesnich plodu", authors[0].id, "Kratky popis", "Dlouhy popis", 50, 5),
-        new Recipe("Misarezy", authors[3].id, "Kratky popis", "Dlouhy popis", 50, 5)
+        new Recipe("Cokoladovy dort", authors[0].id, "Dlouhy popis", 50, 5),
+        new Recipe("Slehackovy dort", authors[1].id, "Dlouhy popis", 50, 5),
+        new Recipe("Babovka", authors[1].id, "Dlouhy popis", 50, 5),
+        new Recipe("Malinovy chesecake", authors[2].id, "Dlouhy popis", 50, 5),
+        new Recipe("Chesecake z lesnich plodu", authors[0].id, "Dlouhy popis", 50, 5),
+        new Recipe("Misarezy", authors[3].id, "Dlouhy popis", 50, 5)
     ];
     unitOfWork.insertAll(data);
 }
