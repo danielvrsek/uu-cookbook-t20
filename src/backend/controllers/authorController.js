@@ -15,7 +15,12 @@ class AuthorController extends Controller {
     }
 
     getAuthor(authorId) {
-        return this.serialize(authorRepository.getById(authorId));
+        let author = authorRepository.getById(authorId);
+        if (!author) {
+            throw new ValidationError(`Author with id ${authorId} does not exist`);
+        }
+
+        return this.serialize(author);
     }
 
     async createAuthorAsync(input) {
