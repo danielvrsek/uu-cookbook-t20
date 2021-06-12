@@ -17,7 +17,7 @@ export default function MainLayout(props) {
                 
 
             </div>
-            <div className="content">
+            <div className="container">
                 {props.children}
             </div>
         </div>
