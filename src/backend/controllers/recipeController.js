@@ -21,7 +21,7 @@ class RecipeController extends Controller {
 
     async createRecipeAsync(input, context) {
         if (!input) {
-            throw ValidationError("Could not create recipe. Invalid input.");
+            throw ValidationError("Recept nemohl být vytvořen. Nevalidní vstup.");
         }
 
         this.validate(input);

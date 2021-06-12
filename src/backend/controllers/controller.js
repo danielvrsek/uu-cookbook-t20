@@ -10,11 +10,4 @@ export class Controller {
         
         return data;
     }
-
-    error(message) {
-        return {
-            status: "error",
-            message
-        };
-    }
 }

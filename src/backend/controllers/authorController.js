@@ -17,7 +17,7 @@ class AuthorController extends Controller {
     getAuthor(authorId) {
         let author = authorRepository.getById(authorId);
         if (!author) {
-            throw new ValidationError(`Author with id ${authorId} does not exist`);
+            throw new ValidationError(`Autor s id ${authorId} neexistuje.`);
         }
 
         return this.serialize(author);
@@ -25,7 +25,7 @@ class AuthorController extends Controller {
 
     async createAuthorAsync(input) {
         if (!input) {
-            throw new ValidationError("Could not create author. Invalid input.");
+            throw new ValidationError("Nelze vytvořit autora. Nevalidní vstup.");
         }
 
         this.validate(input);
@@ -37,14 +37,14 @@ class AuthorController extends Controller {
 
     async updateAuthorAsync(authorId, input) {
         if (!input) {
-            throw new ValidationError("Could not create author. Invalid input.");
+            throw new ValidationError("Nelze upravit autora. Nevalidní vstup.");
         }
 
         this.validate(input);
 
         let author = authorRepository.getById(authorId);
         if (!author) {
-            throw new ValidationError(`Could not update author. Author with id '${authorId}' does not exist`);
+            throw new ValidationError(`Nelze upravit autora. Autor s id '${authorId}' neexistuje`);
         }
 
         author.firstName = input.firstName;
@@ -56,9 +56,13 @@ class AuthorController extends Controller {
     }
 
     async deleteAuthorAsync(authorId) {
+        if (!authorId) {
+            throw new ValidationError("Nelze smazat autora. Nevalidní vstup.");
+        }
+
         let author = authorRepository.getById(authorId);
         if (!author) {
-            throw new ValidationError(`Could not delete author. Author with id '${authorId}' does not exist`);
+            throw new ValidationError(`Nelze smazat autora. Autor s id '${authorId}' neexistuje`);
         }
 
         unitOfWork.delete(author);
@@ -69,19 +73,19 @@ class AuthorController extends Controller {
         let errors = [];
 
         if (!input.firstName) {
-            errors.push("First name must be specified.");
+            errors.push("Jméno musí být vyplněno.");
         }
 
         if (!input.lastName) {
-            errors.push("Last name must be specified.");
+            errors.push("Přijimení musí být vyplněno.");
         }
 
         if (!input.username) {
-            errors.push("Username must be specified.");
+            errors.push("Uživatelské jméno musí být vyplněno.");
         }
 
         if (errors.length > 0) {
-            throw new ValidationError("Failed to create author.\n" + errors.join('\n'));
+            throw new ValidationError("Nelze vytvořit autora.\n" + errors.join('\n'));
         }
     }
 }
