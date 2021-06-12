@@ -3,7 +3,6 @@ import { recipeRepository } from "../dataLayer/repositories/recipeRepository.js"
 import { unitOfWork } from "../dataLayer/unitOfWork.js";
 import { Recipe } from "../entities/recipe.js";
 import { ValidationError } from "../errors.js";
-import { requestContext } from "../http/RequestContext.js";
 import { Controller } from "./controller.js";
 
 class RecipeController extends Controller {
@@ -20,14 +19,14 @@ class RecipeController extends Controller {
         return this.serialize(data);
     }
 
-    async createRecipeAsync(input) {
+    async createRecipeAsync(input, context) {
         if (!input) {
             throw ValidationError("Could not create recipe. Invalid input.");
         }
 
         this.validate(input);
 
-        let username = requestContext.authorization.username;
+        let username = context.authorization.username;
         let author = authorRepository.getByUsername(username);
         if (!author) {
             throw new ValidationError("Neznámý autor.");

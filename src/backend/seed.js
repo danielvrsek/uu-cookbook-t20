@@ -41,8 +41,15 @@ function seedRecipeCategory() {
     unitOfWork.insert(cheesecakes);
 
     unitOfWork.insertAll([
-        new RecipeCategory("Cokoladove", cakes.id),
-        new RecipeCategory("Ovocne", cheesecakes.id)
+        new RecipeCategory("Bezlepkové"),
+        new RecipeCategory("Vegetarianské"),
+        new RecipeCategory("Veganské"),
+        new RecipeCategory("Nízký obsah cukru"),
+        new RecipeCategory("Bez laktózy"),
+        new RecipeCategory("Fitness"),
+        new RecipeCategory("Levné recepty"),
+        new RecipeCategory("Čokoládové", cakes.id),
+        new RecipeCategory("Ovocné", cheesecakes.id)
     ]);
 }
 

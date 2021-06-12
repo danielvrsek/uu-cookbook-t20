@@ -1,5 +1,4 @@
 import express from 'express';
-import { database } from './dataLayer/database.js';
 import { declareEndpoints } from './endpoints.js';
 import { seedDataAsync } from './seed.js';
 import cors from 'cors'
@@ -12,9 +11,7 @@ var corsOptions = {
    origin: 'http://localhost:3000',
 }
 app.use(cors(corsOptions));
-
 app.use(express.json()) // for parsing application/json
-app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 declareEndpoints(app);
 startServer(8080);

@@ -15,6 +15,10 @@ class ApiClient {
         this.fetchApi("POST", "/api/recipes", input, callback);
     }
 
+    getRecipeCategories(callback) {
+        this.fetchApi("GET", "/api/recipeCategories", null, callback);
+    }
+
     getAuthors(filter, callback) {
         this.fetchApi("GET", "/api/authors", null, callback);
     }

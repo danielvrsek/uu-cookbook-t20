@@ -69,7 +69,6 @@ export class AuthorEditForm extends Component {
     render() {
         return <>
             <Form onSubmit={this.handleSubmit}>
-
                 <div className="login-form">
                     <div className="form-box solid">
                         <h1 className="login-text">Úprava</h1>

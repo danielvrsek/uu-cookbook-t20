@@ -1,8 +1,8 @@
 import { authorController } from "./controllers/authorController.js";
 import { authorizationController } from "./controllers/authorizationController.js";
+import { recipeCategoryController } from "./controllers/recipeCategoryController.js";
 import { recipeController } from "./controllers/recipeController.js";
 import { AuthorizationError, ValidationError } from "./errors.js"
-import { requestContext } from "./http/RequestContext.js";
 import { authorizationService } from "./services/authorizationService.js";
 
 export function declareEndpoints(app) {
@@ -34,9 +34,15 @@ export function declareEndpoints(app) {
     });
 
     app.post('/api/recipes', function (req, res) {
-        handleAuthorizedResponseAsync(req, res, () => recipeController.createRecipeAsync(req.body));
+        handleAuthorizedResponseAsync(req, res, (context) => recipeController.createRecipeAsync(req.body, context));
     });
     // ******** RECIPES ********
+
+    // ******** RECIPE CATEGORIES ********
+    app.get('/api/recipeCategories', function (req, res) {
+        handleResponseAsync(res, () => recipeCategoryController.getRecipeCategories());
+    });
+    // ******** RECIPE CATEGORIES ********
 
     // ******** AUTHORIZATION ********
     app.post('/api/login', function (req, res) {
@@ -54,14 +60,19 @@ export function declareEndpoints(app) {
         return;
     }
 
-    console.log(token);
-    requestContext.authorization.username = authorizationService.getUsernameFromToken(token);
-    await handleResponseAsync(res, handler);
+    let context = {
+        authorization: {
+            username: authorizationService.getUsernameFromToken(token)
+        }
+    }
+    await handleResponseAsync(res, handler, context);
  }
 
- async function handleResponseAsync(res, handler) {
+ async function handleResponseAsync(res, handler, context) {
+    context = context ?? {};
+
     try {
-        let result = handler();
+        let result = handler(context);
         if (result instanceof Promise) {
             result = await result;
         }

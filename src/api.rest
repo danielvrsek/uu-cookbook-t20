@@ -3,7 +3,7 @@ POST http://localhost:8080/api/login
 Content-Type: application/json
 
 {
-    "username": "danielko",
+    "username": "kalda",
     "password": "test"
 }
 
@@ -44,3 +44,6 @@ GET http://localhost:8080/api/recipes
 
 ### Get recipes filtered by author ID
 GET http://localhost:8080/api/recipes?authorId=8cca86ae-6616-8a6b-d199-8a769d400255
+
+### Get all recipe categories
+GET http://localhost:8080/api/recipeCategories
