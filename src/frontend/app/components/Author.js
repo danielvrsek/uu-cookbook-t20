@@ -6,16 +6,22 @@ import '../components/LoginForm.css';
 
 export function AuthorList(props) {
     return (
+       
         <ul>
             {props.data.map(x => (
-                <li>
-                    <A key={x.id} href={getAuthorLink(x.id)}>
+                
+                <li className="author-list">
+                    
+                    <A  key={x.id} href={getAuthorLink(x.id)}>
                         <AuthorDetail {...x} />
                     </A>
+                    
                 </li>
+                
 
             ))}
         </ul>
+        
     );
 }
 
@@ -75,6 +81,7 @@ export class AuthorEditForm extends Component {
                     </div>
                 </div>
             </Form>
+            
         </>;
     }
 

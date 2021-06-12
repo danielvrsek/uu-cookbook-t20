@@ -17,7 +17,8 @@ export default class AuthorListPage extends Component{
 
         return <>
             <h1>List of all authors</h1>
-            <AuthorList data={this.state.data} />
+             <AuthorList data={this.state.data} />
+                 
         </>;
     }
 }

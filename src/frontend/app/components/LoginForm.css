@@ -78,7 +78,7 @@ label {
     width: 75%;
     justify-content: center;
     align-items: center;
-    background-color: rgb(20, 0, 204);
+    background-color: rgb(78, 137, 245);
     color: white;
     margin-top: 5px;
     border-radius: 20px;
@@ -94,7 +94,7 @@ label {
 .login-btn:hover {
     transform: scale(1.0);
     letter-spacing: 1px;
-    background-color: #0003a1;
+    background-color: #ffffff;
     color: #1E90FF;
 }
 
@@ -107,4 +107,18 @@ label {
 .show.active {
     transform: translateY(100px) scale(0) rotateY(180deg);
     opacity: 0;
+}
+
+.author-list {
+    list-style: none;
+}
+
+.author-list-box {
+    margin-top: -40vh;
+    opacity: 80%;
+    background: rgb(112, 157, 184);
+    padding-right: 80px;
+    padding-left: 80px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px 1px rgba(10, 2, 78, 0.2);
 }
