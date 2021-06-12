@@ -1,6 +1,6 @@
 
 import React, { Component } from "react";
-import Recipe from '../components/recipes/Recipe';
+import Recipe from '../components/recipes/RecipeList';
 export default class Favourites extends Component{
 
 
