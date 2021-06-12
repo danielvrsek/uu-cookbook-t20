@@ -2,6 +2,7 @@ import { A } from "@patched/hookrouter";
 import React, { Component } from "react";
 import { apiClient } from "../api/ApiClient";
 import { Form, Submit, TextInput } from "../common/Forms";
+import '../components/LoginForm.css';
 
 export function AuthorList(props) {
     return (
@@ -33,7 +34,7 @@ export function AuthorDetail(props) {
 export class AuthorEditForm extends Component {
     constructor(props) {
         super(props);
-        
+
         this.state = { ...props };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,7 +42,7 @@ export class AuthorEditForm extends Component {
 
     handleInputChange(name, value) {
         this.setState({
-          [name]: value
+            [name]: value
         });
     }
 
@@ -52,24 +53,31 @@ export class AuthorEditForm extends Component {
             username: this.state.username
         }
 
-        apiClient.editAuthor(this.props.id, data, () => {})
+        apiClient.editAuthor(this.props.id, data, () => { })
         event.preventDefault();
     }
 
     render() {
         return <>
             <Form onSubmit={this.handleSubmit}>
-                <TextInput name="firstName" label="First name" value={this.state.firstName} onChange={this.handleInputChange} />
-                <br />
-                <TextInput name="lastName" label="Last name" value={this.state.lastName} onChange={this.handleInputChange} />
-                <br />
-                <TextInput name="username" label="Username" value={this.state.username} onChange={this.handleInputChange} />
-                <br />
-                <Submit value="Save" />
+            
+                <div className="login-form">
+                    <div className="form-box solid">
+                    <h1 className="login-text">Úprava</h1>
+                    <br></br>
+                        <TextInput  name="firstName" label="Jméno" value={this.state.firstName} onChange={this.handleInputChange} />
+                        <br />
+                        <TextInput name="lastName" label="Příijmení" value={this.state.lastName} onChange={this.handleInputChange} />
+                        <br />
+                        <TextInput name="username" label="Přezdívka" value={this.state.username} onChange={this.handleInputChange} />
+                        <br />
+                        <Submit value="Uložit"/>
+                    </div>
+                </div>
             </Form>
         </>;
     }
-    
+
 }
 
 function getAuthorLink(authorId) {

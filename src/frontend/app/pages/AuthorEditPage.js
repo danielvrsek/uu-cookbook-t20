@@ -12,7 +12,6 @@ export default class AuthorListPage extends Component{
 
     render() {
         return <>
-            <h1>Author detail</h1>
             {this.state.data && <AuthorEditForm {...this.state.data} />}
         </>;
     }
