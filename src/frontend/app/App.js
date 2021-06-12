@@ -1,3 +1,5 @@
+import 'bootstrap';
+import './scss/app.scss';
 import React from "react";
 import { useRoutes } from '@patched/hookrouter';
 import AuthorListPage from "./pages/AuthorListPage";
