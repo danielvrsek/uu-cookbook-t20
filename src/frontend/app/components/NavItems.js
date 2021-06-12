@@ -2,7 +2,7 @@
 export const NavItems = [
     {
         label: "Recepty",
-        url: "/recipes",
+        url: "/recipe",
         cName: "nav-links"
     },
     {
