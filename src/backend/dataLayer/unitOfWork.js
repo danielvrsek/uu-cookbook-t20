@@ -42,8 +42,8 @@ class UnitOfWork {
         table.delete(entity.id);
     }
 
-    commit() {
-        database.save();
+    commitAsync() {
+        return database.saveAsync();
     }
 }
 

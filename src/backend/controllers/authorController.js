@@ -18,7 +18,7 @@ class AuthorController extends Controller {
         return this.serialize(authorRepository.getById(authorId));
     }
 
-    createAuthor(input) {
+    async createAuthorAsync(input) {
         if (!input) {
             throw new ValidationError("Could not create author. Invalid input.");
         }
@@ -27,10 +27,10 @@ class AuthorController extends Controller {
 
         let author = new Author(input.firstName, input.lastName, input.username);
         unitOfWork.insert(author);
-        unitOfWork.commit();
+        await unitOfWork.commitAsync();
     }
 
-    updateAuthor(authorId, input) {
+    async updateAuthorAsync(authorId, input) {
         if (!input) {
             throw new ValidationError("Could not create author. Invalid input.");
         }
@@ -47,17 +47,17 @@ class AuthorController extends Controller {
         author.username = input.username;
         
         unitOfWork.update(author);
-        unitOfWork.commit();
+        await unitOfWork.commitAsync();
     }
 
-    deleteAuthor(authorId) {
+    async deleteAuthorAsync(authorId) {
         let author = authorRepository.getById(authorId);
         if (!author) {
             throw new ValidationError(`Could not delete author. Author with id '${authorId}' does not exist`);
         }
 
         unitOfWork.delete(author);
-        unitOfWork.commit();
+        await unitOfWork.commitAsync();
     }
 
     validate(input) {

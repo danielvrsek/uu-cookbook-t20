@@ -7,41 +7,41 @@ import { authorizationService } from "./services/authorizationService.js";
 export function declareEndpoints(app) {
     // ******** AUTHORS ********
     app.get('/api/authors', function (req, res) {
-        handleResponse(res, () => authorController.getAuthors(req.query));
+        handleResponseAsync(res, () => authorController.getAuthors(req.query));
     });
 
     app.get('/api/authors/:authorId', function (req, res) {
-        handleResponse(res, () => authorController.getAuthor(req.params.authorId));
+        handleResponseAsync(res, () => authorController.getAuthor(req.params.authorId));
     });
 
     app.put('/api/authors', function (req, res) {
-        handleAuthorizedResponse(req, res, () => authorController.createAuthor(req.body));
+        handleAuthorizedResponseAsync(req, res, () => authorController.createAuthorAsync(req.body));
     });
 
     app.post('/api/authors/:authorId', function (req, res) {
-        handleAuthorizedResponse(req, res, () => authorController.updateAuthor(req.params.authorId, req.body));
+        handleAuthorizedResponseAsync(req, res, () => authorController.updateAuthorAsync(req.params.authorId, req.body));
     });
 
     app.delete('/api/authors/:authorId', function (req, res) {
-        handleAuthorizedResponse(req, res, () => authorController.deleteAuthor(req.params.authorId));
+        handleAuthorizedResponseAsync(req, res, () => authorController.deleteAuthorAsync(req.params.authorId));
     });
     // ******** AUTHORS ********
 
     // ******** RECIPES ********
     app.get('/api/recipes', function (req, res) {
-        handleResponse(res, () => recipeController.getRecipes(req.query));
+        handleResponseAsync(res, () => recipeController.getRecipes(req.query));
     });
     // ******** RECIPES ********
 
     // ******** AUTHORIZATION ********
     app.post('/api/login', function (req, res) {
-        handleResponse(res, () => authorizationController.login(req.body.username, req.body.password));
+        handleResponseAsync(res, () => authorizationController.login(req.body.username, req.body.password));
     });
     // ******** AUTHORIZATION ********
 
  }
 
- function handleAuthorizedResponse(req, res, handler) {
+ async function handleAuthorizedResponseAsync(req, res, handler) {
     let token = req.header("Token");
     console.log(`Received authorization token '${token}'`)
     if (!token || !authorizationService.validateToken(token)) {
@@ -50,18 +50,21 @@ export function declareEndpoints(app) {
         return;
     }
 
-    handleResponse(res, handler);
+    await handleResponseAsync(res, handler);
  }
 
- function handleResponse(res, handler) {
+ async function handleResponseAsync(res, handler) {
     try {
         let result = handler();
+        if (result instanceof Promise) {
+            result = await result;
+        }
+
         res.send({
             result: "OK",
             data: result
         });
-    }
-    catch (err) {
+    } catch (err) {
         console.error(err.stack);
 
         if (err instanceof ValidationError) {

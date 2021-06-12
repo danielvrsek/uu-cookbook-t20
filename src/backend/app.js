@@ -4,9 +4,9 @@ import { declareEndpoints } from './endpoints.js';
 import { seedData } from './seed.js';
 import cors from 'cors'
 
-database.load();
+await database.loadAsync();
 //seedData();
-//database.save();
+//database.saveAsync();
 
 let app = express();
 var corsOptions = {

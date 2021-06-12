@@ -17,9 +17,9 @@ class AuthorizationService {
 
     validateToken(token) {
         // Simple validation without source verification
-        let buff = Buffer.from(token, 'base64');
         let data;
         try {
+            let buff = Buffer.from(token, 'base64');
             data = JSON.parse(buff.toString('utf-8'));
         }
         catch (e) {

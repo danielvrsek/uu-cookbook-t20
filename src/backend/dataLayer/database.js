@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'fs/promises'
 import { Author } from '../entities/author.js';
 import { Ingredient } from '../entities/ingredients.js';
 import { Recipe } from '../entities/recipe.js';
@@ -19,8 +19,8 @@ class Database {
         this.data[table.name] = table;
     }
 
-    load() {
-        let rawData = fs.readFileSync(this.getFileName());
+    async loadAsync() {
+        let rawData = await fs.readFile(this.getFileName());
         let dataObj = JSON.parse(rawData);
 
         for (let tableName in dataObj) {
@@ -35,7 +35,7 @@ class Database {
         console.log("Database has been loaded.");
     }
 
-    save() {
+    async saveAsync() {
         let rootObj = {};
 
         for (let tableName in this.data) {
@@ -43,7 +43,7 @@ class Database {
             rootObj[table.name] = table.serialize();
         }
 
-        fs.writeFileSync(this.getFileName(), JSON.stringify(rootObj, null, 2));
+        await fs.writeFile(this.getFileName(), JSON.stringify(rootObj, null, 2));
         console.log("Database has been saved.");
     }
 
