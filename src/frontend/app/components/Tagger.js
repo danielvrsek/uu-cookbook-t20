@@ -51,7 +51,7 @@ export default class Tagger extends Component {
             }
 
             selector = <>
-                <label>
+                <label className="text-secondary">
                     {this.props.label}:
                 </label>
                 <Select data={items} onChange={this.handleInputChange} />

@@ -53,7 +53,6 @@ export default class AddRecipe extends Component {
                         <br></br>
                         <TextInput name="title" label="Název" value={this.state.title} onChange={this.handleInputChange} />
                         
-                        
                         <br />
                         <div className="row">
                             <div className="col">
@@ -72,7 +71,7 @@ export default class AddRecipe extends Component {
 
                         <br />
                         <br />
-                        <Tagger onChange={this.handleInputChange} items={this.state.recipeCategories.map(x => ({
+                        <Tagger label="Kategorie" onChange={this.handleInputChange} items={this.state.recipeCategories.map(x => ({
                             key: x.id,
                             value: x.name
                         }))} />

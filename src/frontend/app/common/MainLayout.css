@@ -1,0 +1,8 @@
+.main > .container {
+    background-color: #f8f8f8;
+    opacity: 90%;
+    min-height: 30vh;
+    padding-top: 5vh;
+    margin-top: 2vh;
+    border-radius: 5px;
+}

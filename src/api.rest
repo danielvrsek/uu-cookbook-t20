@@ -11,10 +11,10 @@ Content-Type: application/json
 GET http://localhost:8080/api/authors
 
 ### Get author
-GET http://localhost:8080/api/authors/b65e7783-1bfd-4a29-9e40-8c670d202711
+GET http://localhost:8080/api/authors/c63d812e-71cf-2fe5-64fb-67a692ecad0f
 
 ### Create a new author
-PUT http://localhost:8080/api/authors
+POST http://localhost:8080/api/authors
 Content-Type: application/json
 Token: eyJ1c2VybmFtZSI6ImRhbmllbGtvIiwicm9sZSI6ImVkaXRvciJ9
 
@@ -25,7 +25,7 @@ Token: eyJ1c2VybmFtZSI6ImRhbmllbGtvIiwicm9sZSI6ImVkaXRvciJ9
 }
 
 ### Update author
-POST http://localhost:8080/api/authors/e0a77455-f22b-c8d4-e68e-73e8df692997
+PUT http://localhost:8080/api/authors/c63d812e-71cf-2fe5-64fb-67a692ecad0f
 Content-Type: application/json
 Token: eyJ1c2VybmFtZSI6ImRhbmllbGtvIiwicm9sZSI6ImVkaXRvciJ9
 
@@ -36,14 +36,26 @@ Token: eyJ1c2VybmFtZSI6ImRhbmllbGtvIiwicm9sZSI6ImVkaXRvciJ9
 }
 
 ### Delete author
-DELETE http://localhost:8080/api/authors/d94e942c-864a-a824-6bc0-4a69ca2c6c4f
+DELETE http://localhost:8080/api/authors/c63d812e-71cf-2fe5-64fb-67a692ecad0f
 Token: eyJ1c2VybmFtZSI6ImRhbmllbGtvIiwicm9sZSI6ImVkaXRvciJ9
+
+### Create recipe
+POST http://localhost:8080/api/recipes
+Content-Type: application/json
+Token: eyJ1c2VybmFtZSI6ImRhbmllbGtvIiwicm9sZSI6ImVkaXRvciJ9
+
+{
+    "title": "Test",
+    "longDescription": "Dlouhy popis",
+    "preparationLength": 50,
+    "servingSize": 10
+}
 
 ### Get all recipes
 GET http://localhost:8080/api/recipes
 
 ### Get recipes filtered by author ID
-GET http://localhost:8080/api/recipes?authorId=8cca86ae-6616-8a6b-d199-8a769d400255
+GET http://localhost:8080/api/recipes?authorId=c63d812e-71cf-2fe5-64fb-67a692ecad0f
 
 ### Get all recipe categories
 GET http://localhost:8080/api/recipeCategories

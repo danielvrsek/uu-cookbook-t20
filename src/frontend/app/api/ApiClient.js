@@ -1,9 +1,17 @@
 class ApiClient {
     constructor(baseUri) {
         this.baseUri = baseUri;
+
+        this.login = this.login.bind(this);
+        this.fetchApi = this.fetchApi.bind(this);
     }
 
     login(credentials, callback) {
+        callback = (res) => {
+            this.token = res;
+            callback(res);
+        }
+
         this.fetchApi("POST", "/api/login", credentials, callback);
     }
 
@@ -34,12 +42,15 @@ class ApiClient {
     fetchApi(method, url, body, callback) {
         let options = {
             method,
-            headers: (body && {
-                "Token": "eyJ1c2VybmFtZSI6ImRhbmllbGtvIiwicm9sZSI6ImVkaXRvciJ9",
-                "Content-Type": "application/json"
-            }) || undefined,
+            headers: {},
             body: body && JSON.stringify(body)
         };
+        if (this.token) {
+            options.headers["Token"] = this.token;
+        }
+        if (body) {
+            options.headers["Content-Type"] = "application/json";
+        }
     
         return fetch(this.baseUri + url, options)
             .then((res) => res.json())

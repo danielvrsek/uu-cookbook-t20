@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React from "react";
 import NavBar from "./NavBar";
-
+import './MainLayout.css'
 
 export default function MainLayout(props) {
 

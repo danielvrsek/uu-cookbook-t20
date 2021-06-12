@@ -1,4 +1,5 @@
 import { authorRepository } from "../dataLayer/repositories/authorRepository.js";
+import { loginAccountRepository } from "../dataLayer/repositories/loginAccountRepository.js";
 import { recipeRepository } from "../dataLayer/repositories/recipeRepository.js";
 import { unitOfWork } from "../dataLayer/unitOfWork.js";
 import { Recipe } from "../entities/recipe.js";
@@ -24,12 +25,18 @@ class RecipeController extends Controller {
             throw ValidationError("Recept nemohl být vytvořen. Nevalidní vstup.");
         }
 
+        console.log(input);
+
         this.validate(input);
 
         let username = context.authorization.username;
-        let author = authorRepository.getByUsername(username);
+        let loginAccount = loginAccountRepository.getByUsername(username);
+        if (!loginAccount) {
+            throw new ValidationError("Invalidní přihlášení.");
+        }
+        let author = authorRepository.getById(loginAccount.authorId);
         if (!author) {
-            throw new ValidationError("Neznámý autor.");
+            throw new ValidationError("Neexistující autor.");
         }
 
         let recipe = new Recipe(input.title, author.id, input.longDescription, input.preparationLength, input.servingSize);

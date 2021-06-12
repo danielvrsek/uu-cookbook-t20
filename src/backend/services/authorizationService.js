@@ -1,4 +1,4 @@
-import { authorRepository } from "../dataLayer/repositories/authorRepository.js";
+import { loginAccountRepository } from "../dataLayer/repositories/loginAccountRepository.js";
 import { AuthorizationError } from "../errors.js";
 import { passwordUtils } from "./passwordUtils.js";
 
@@ -42,15 +42,15 @@ class AuthorizationService {
     }
 
     validateUser(username, password) {
-        let author = authorRepository.getByUsername(username);
-        if (!author) {
-            console.warn(`Could not find author with username ${username}`);
+        let loginAccount = loginAccountRepository.getByUsername(username);
+        if (!loginAccount) {
+            console.warn(`Could not find login account with username ${username}`);
             return false;
         }
 
         let passwordHash = passwordUtils.generateHash(password);
-        if (author.password !== passwordHash) {
-            console.warn(`Incorrect password for author ${username}`);
+        if (loginAccount.password !== passwordHash) {
+            console.warn(`Incorrect password for login account ${username}`);
             return false;
         }
 

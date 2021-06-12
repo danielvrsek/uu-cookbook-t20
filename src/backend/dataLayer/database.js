@@ -1,9 +1,9 @@
 import fs from 'fs/promises'
 import { Author } from '../entities/author.js';
-import { Ingredient } from '../entities/ingredients.js';
+import { LoginAccount } from '../entities/loginAccount.js';
 import { Recipe } from '../entities/recipe.js';
 import { RecipeCategory } from '../entities/recipeCategory.js';
-import { RecipeIngredient } from '../entities/recipeIngredient.js';
+import { RecipeRecipeCategory } from '../entities/recipeRecipeCategory.js';
 
 class Database {
     constructor(name) {
@@ -91,10 +91,10 @@ function createDatabase(name) {
 
 function defineTables(database) {
     database.defineTable(new Table("author", Author));
-    database.defineTable(new Table("ingredients", Ingredient));
+    database.defineTable(new Table("loginAccount", LoginAccount));
     database.defineTable(new Table("recipe", Recipe));
     database.defineTable(new Table("recipeCategory", RecipeCategory));
-    database.defineTable(new Table("recipeIngredients", RecipeIngredient));
+    database.defineTable(new Table("recipeRecipeCategory", RecipeRecipeCategory));
 }
 
 export var database = createDatabase("cookbook");
