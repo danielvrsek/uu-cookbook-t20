@@ -55,7 +55,7 @@ Token: eyJ1c2VybmFtZSI6ImRhbmllbGtvIiwicm9sZSI6ImVkaXRvciJ9
 GET http://localhost:8080/api/recipes
 
 ### Get recipes filtered by author ID
-GET http://localhost:8080/api/recipes?authorId=c63d812e-71cf-2fe5-64fb-67a692ecad0f
+GET http://localhost:8080/api/recipes?authorId=4787609b-8ca7-1e56-9caa-70af5b364496
 
 ### Get all recipe categories
 GET http://localhost:8080/api/recipeCategories
