@@ -55,6 +55,7 @@ export default class AddRecipe extends Component {
                         
                         
                         <br />
+                        <br />
                         <div className="row">
                             <div className="col">
                             <label className="text-secondary">Počet porcí:</label>

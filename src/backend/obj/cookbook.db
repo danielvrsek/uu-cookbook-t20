@@ -102,6 +102,22 @@
       "preparationLength": "11",
       "servingSize": "4",
       "id": "0f312d31-ddb6-c979-a3eb-24e264d05835"
+    },
+    {
+      "title": "Kefírová buchta",
+      "authorId": "69a8956c-eadf-4a48-9f26-de38ca9a697e",
+      "longDescription": "šup sem, šup tam + kakao",
+      "preparationLength": "30",
+      "servingSize": "10",
+      "id": "39b463fd-57a8-f215-b6da-1fb18e2c0cde"
+    },
+    {
+      "title": "Kefírová buchta 2",
+      "authorId": "69a8956c-eadf-4a48-9f26-de38ca9a697e",
+      "longDescription": "fsdfsdfsdf",
+      "preparationLength": "3",
+      "servingSize": "2",
+      "id": "cf2bebef-81ba-ef81-9e64-b3a186250733"
     }
   ],
   "recipeCategory": [
