@@ -28,9 +28,9 @@
 }
 
 .form-box {
-    margin-top: 7vh;
+    margin-top: -40vh;
     opacity: 80%;
-    background: rgb(1, 162, 255);
+    background: rgb(2, 61, 95);
     padding-right: 80px;
     padding-left: 80px;
     border-radius: 20px;
@@ -92,8 +92,8 @@ label {
 }
 
 .login-btn:hover {
-    transform: scale(1.02);
-    letter-spacing: 2px;
+    transform: scale(1.0);
+    letter-spacing: 1px;
     background-color: #0003a1;
     color: #1E90FF;
 }

@@ -40,7 +40,7 @@ class NavBar extends Component {
                         )
                     })}
                     <li>
-                        <h1 className="nav-links"><i className="far fa-question-circle"></i></h1>
+                       <A href="/authors" ><h1 className="nav-links"><i className="far fa-question-circle"></i></h1></A>
                     </li>
 
                 </ul>

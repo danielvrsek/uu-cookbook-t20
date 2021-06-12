@@ -14,6 +14,7 @@ function LoginForm({ isShowLogin }) {
         <div className="form-box solid">
           <form>
             <h1 className="login-text">Přihlášení</h1>
+            <br></br>
             <label>Uživatelské jméno</label>
             <br></br>
             <input type="text" name="username" className="login-box" />
