@@ -33,7 +33,7 @@ class NavBar extends Component {
                         return (
                             <li key={index}>
                                 <A className={item.cName} href={item.url}>
-                                {item.label}
+                                {item.label} &nbsp; <i className={item.img}></i>
                                 </A>
                             </li>
                             
