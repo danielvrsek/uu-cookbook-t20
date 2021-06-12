@@ -9,6 +9,11 @@ export const NavItems = [
         label: "Kategorie receptů",
         url: "/categories",
         cName: "nav-links"
+    },
+    {
+        label: "O nás",
+        url: "/contact",
+        cName: "nav-links"
     }
 
 

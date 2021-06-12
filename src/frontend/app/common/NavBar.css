@@ -36,9 +36,11 @@
 .nav-links {
     color: white;
     text-decoration: none;
-    padding: 0.5rem 1rem;
-    margin-left: 5rem;
+    padding: 0.1rem 3rem;
+    margin-left: 7rem;
     font-size: medium;
+    vertical-align: -0.5rem;
+  
 }
 
 .nav-links:hover {
