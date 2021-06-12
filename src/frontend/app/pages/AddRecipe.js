@@ -54,6 +54,7 @@ export default class AddRecipe extends Component {
                         <TextInput name="title" label="Název" value={this.state.title} onChange={this.handleInputChange} />
                         
                         <br />
+                        <br />
                         <div className="row">
                             <div className="col">
                             <label className="text-secondary">Počet porcí:</label>
