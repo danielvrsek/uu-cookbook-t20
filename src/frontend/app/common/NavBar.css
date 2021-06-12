@@ -65,7 +65,7 @@ div.nav {
     display: inherit;
 }
 
-@media screen and (max-width: 1124px) { 
+@media screen and (max-width: 1440px) { 
     .nav-menu {
         display: flex;
         flex-direction: column;
