@@ -6,22 +6,23 @@ import '../components/LoginForm.css';
 
 export function AuthorList(props) {
     return (
-       
+
         <ul>
             {props.data.map(x => (
-                
-                <li className="author-list">
-                    
-                    <A  key={x.id} href={getAuthorLink(x.id)}>
-                        <AuthorDetail {...x} />
+
+                <li>
+
+
+                    <AuthorDetail {...x} />
+                    <A key={x.id} href={getAuthorLink(x.id)}><i class="fas fa-pen"></i> <i class="fas fa-user-times"></i>
                     </A>
-                    
+
                 </li>
-                
+
 
             ))}
         </ul>
-        
+
     );
 }
 
@@ -66,22 +67,22 @@ export class AuthorEditForm extends Component {
     render() {
         return <>
             <Form onSubmit={this.handleSubmit}>
-            
+
                 <div className="login-form">
                     <div className="form-box solid">
-                    <h1 className="login-text">Úprava</h1>
-                    <br></br>
-                        <TextInput  name="firstName" label="Jméno" value={this.state.firstName} onChange={this.handleInputChange} />
+                        <h1 className="login-text">Úprava</h1>
+                        <br></br>
+                        <TextInput name="firstName" label="Jméno" value={this.state.firstName} onChange={this.handleInputChange} />
                         <br />
                         <TextInput name="lastName" label="Příijmení" value={this.state.lastName} onChange={this.handleInputChange} />
                         <br />
                         <TextInput name="username" label="Přezdívka" value={this.state.username} onChange={this.handleInputChange} />
                         <br />
-                        <Submit value="Uložit"/>
+                        <Submit value="Uložit" />
                     </div>
                 </div>
             </Form>
-            
+
         </>;
     }
 
