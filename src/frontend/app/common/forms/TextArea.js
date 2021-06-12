@@ -16,9 +16,10 @@ export default class TextArea extends Component {
         
         return (
         
-                
-                <input class="input-large search-query" type="text" name={this.props.name} value={this.props.value} onChange={this.handleChange} />
-            
+            <div className="form-floating">
+                <textarea className="form-control" type="text" name={this.props.name} value={this.props.value} onChange={this.handleChange} id="floatingTextarea2" style={{height:"200px"}} />
+                <label className="text-secondary" htmlFor="floatingTextarea2">Začněte psát postup... </label>
+            </div>
         );
     }
 }

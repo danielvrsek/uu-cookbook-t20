@@ -4,7 +4,10 @@ import NumberInput from '../common/forms/NumberInput';
 import Submit from '../common/forms/Submit';
 import TextInput from '../common/forms/TextInput';
 import Select from '../common/forms/Select';
+import TextArea from '../common/forms/TextArea';
 import { Form } from '../common/forms/Form';
+import '../components/LoginForm.css';
+import Tagger from '../components/Tagger';
 
 
 export default class AddRecipe extends Component {
@@ -36,41 +39,48 @@ export default class AddRecipe extends Component {
     }
 
     render() {
-        
+
         if (!this.state.recipeCategories) {
             return "Loading..."
         }
 
         return <>
             <Form onSubmit={this.handleSubmit}>
+               
                 <div>
                     <div>
                         <h1>Nový recept</h1>
                         <br></br>
-                        <TextInput  name="title" label="Název" value={this.state.title} onChange={this.handleInputChange} />
+                        <TextInput name="title" label="Název" value={this.state.title} onChange={this.handleInputChange} />
+                        
+                        
+                        <br />
+                        <div className="row">
+                            <div className="col">
+                            <label className="text-secondary">Počet porcí:</label>
+                                <NumberInput name="servingSize" label="Počet porcí" value={this.state.servingSize} onChange={this.handleInputChange} />
+                            </div>
+                            <div className="col">
+                            <label className="text-secondary">Čas přípravy (min):</label>
+                                <NumberInput name="preparationLength" value={this.state.preparationLength} onChange={this.handleInputChange} />
+                            </div>
+                        </div>
                         <br />
                         <br />
-                        <Select onChange={this.handleInputChange} data={this.state.recipeCategories.map(x => ({
+                        <label className="text-secondary">Postup přípravy:</label>
+                        <TextArea name="longDescription" label="Příprava" value={this.state.longDescription} onChange={this.handleInputChange} />
+
+                        <br />
+                        <br />
+                        <Tagger onChange={this.handleInputChange} items={this.state.recipeCategories.map(x => ({
                             key: x.id,
                             value: x.name
                         }))} />
                         <br />
-
-                        <NumberInput name="servingSize" label="Počet porcí" value={this.state.servingSize} onChange={this.handleInputChange} />
-                        <br />
-                        <br />
-                        <NumberInput name="preparationLength" label="Čas na přípravu" value={this.state.preparationLength} onChange={this.handleInputChange} />
-
-                        <br />
-                        <br />
-
-                        <TextInput  name="longDescription" label="Příprava" value={this.state.longDescription} onChange={this.handleInputChange} />
-
-                        <br />
-                        <br />
                         <Submit value="Přidat" />
                     </div>
                 </div>
+                
             </Form>
         </>
     }
