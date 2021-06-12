@@ -9,15 +9,10 @@ class Recipe extends Component {
     render() {
         return (
             <nav className="recipe-layout">
-
                 <div>
-
-
                     {RecipesList.map((rItem, index) => {
                         return (
-
                             <li key={index}>
-                                
                                 <div className="recipe-layout">
                                     <div className="recipes">
                                     <div className="item__description">
@@ -27,10 +22,8 @@ class Recipe extends Component {
                                     </div>
                                 </div>
                             </li>
-
                         )
                     })}
-
                 </div>
             </nav>
         )
