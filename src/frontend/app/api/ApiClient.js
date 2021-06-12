@@ -3,6 +3,10 @@ class ApiClient {
         this.baseUri = baseUri;
     }
 
+    getRecipes(callback) {
+        this.fetchApi("GET", "/api/recipes", null, callback);
+    }
+
     getAuthors(filter, callback) {
         this.fetchApi("GET", "/api/authors", null, callback);
     }
