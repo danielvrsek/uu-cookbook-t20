@@ -16,7 +16,7 @@ export default class IndexPage extends Component{
         }
 
         return <>
-            <h1>Recipe overview</h1>
+            <h1>Recepty</h1>
             <RecipeOverview recipes={this.state.data} />
         </>;
     }

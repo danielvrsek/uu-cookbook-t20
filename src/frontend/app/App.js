@@ -29,10 +29,11 @@ const routes = {
  
 const App = () => {
     return (
-        
-        <MainLayout>
-            {useRoutes(routes) || <h1>Not found</h1>}
-        </MainLayout>
+        <>
+            <MainLayout>
+                {useRoutes(routes) || <h1>Not found</h1>}
+            </MainLayout>
+        </>
     );
 }
 

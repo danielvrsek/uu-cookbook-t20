@@ -15,7 +15,7 @@ export default class TextInput extends Component {
         return (
             <label>
                 {this.props.label}:
-                <input type="text" name={this.props.name} value={this.props.value} onChange={this.handleChange} className="login-box" />
+                <input type="text" name={this.props.name} value={this.props.value} onChange={this.handleChange} className="login-box" onKeyDown={this.props.onKeyDown} />
             </label>
         );
     }
