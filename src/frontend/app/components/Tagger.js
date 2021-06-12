@@ -73,8 +73,10 @@ export default class Tagger extends Component {
                 <div className="input-group mb-3">
                     {selector}
                 </div>
-                <div className="list-group">
-                    {this.state.items.map(item => <Tag key={item} value={item} onClick={this.handleClick} />)}
+                <div class="container">
+                    <div class="row row-cols-3">
+                        {this.state.items.map(item => <Tag key={item} value={item} onClick={this.handleClick} />)}
+                    </div>
                 </div>
             </>
         );
@@ -85,7 +87,9 @@ var Tag = ({value, onClick}) => {
     let handleClick = () => onClick(value);
     return (
         <>
-            <a href="#" className="list-group-item list-group-item-action" onClick={handleClick}>{value} </a>
+            <div class="col">
+                <a href="#" className="list-group-item list-group-item-action" onClick={handleClick}>{value}</a>
+            </div>
         </>
     )
 }
