@@ -6,13 +6,13 @@ import { Ingredient } from './entities/ingredients.js'
 import { unitOfWork } from './dataLayer/unitOfWork.js'
 import { authorRepository } from './dataLayer/repositories/authorRepository.js'
 
-export function seedData() {
+export async function seedDataAsync() {
     seedAuthors();
     seedIngredients();
     seedRecipeCategory();
     seedRecipe();
 
-    unitOfWork.commit();
+    await unitOfWork.commitAsync();
 }
 
 function seedAuthors() {
@@ -47,8 +47,15 @@ function seedRecipeCategory() {
 }
 
 function seedRecipe() {
+    let authors = authorRepository.getAll();
+
     let data = [
-        new Recipe("Vyborny cokoladovy dort", authorRepository.getAll()[1].id, "Kratky popis", "Dlouhy popis", "50min.", "5 porci")
+        new Recipe("Cokoladovy dort", authors[0].id, "Kratky popis", "Dlouhy popis", 50, 5),
+        new Recipe("Slehackovy dort", authors[1].id, "Kratky popis", "Dlouhy popis", 50, 5),
+        new Recipe("Babovka", authors[1].id, "Kratky popis", "Dlouhy popis", 50, 5),
+        new Recipe("Malinovy chesecake", authors[2].id, "Kratky popis", "Dlouhy popis", 50, 5),
+        new Recipe("Chesecake z lesnich plodu", authors[0].id, "Kratky popis", "Dlouhy popis", 50, 5),
+        new Recipe("Misarezy", authors[3].id, "Kratky popis", "Dlouhy popis", 50, 5)
     ];
     unitOfWork.insertAll(data);
 }

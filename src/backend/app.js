@@ -1,12 +1,11 @@
 import express from 'express';
 import { database } from './dataLayer/database.js';
 import { declareEndpoints } from './endpoints.js';
-import { seedData } from './seed.js';
+import { seedDataAsync } from './seed.js';
 import cors from 'cors'
 
-await database.loadAsync();
-//seedData();
-//database.saveAsync();
+//await database.loadAsync();
+await seedDataAsync();
 
 let app = express();
 var corsOptions = {
