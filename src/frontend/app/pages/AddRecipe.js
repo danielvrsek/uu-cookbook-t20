@@ -13,12 +13,17 @@ import Tagger from '../components/Tagger';
 export default class AddRecipe extends Component {
     constructor(props) {
         super(props);
-        this.state = { ...props };
+        this.state = {
+            title: "",
+            servingSize: 0,
+            preparationLength: 0,
+            longDescription: ""
+         };
+        apiClient.getRecipeCategories((data) => this.setState({ ...this.state, recipeCategories: data }))
+
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCategoryChange = this.handleCategoryChange.bind(this);
-
-        apiClient.getRecipeCategories((data) => this.setState({ ...this.state, recipeCategories: data }))
     }
 
     handleInputChange(name, value) {
@@ -55,7 +60,6 @@ export default class AddRecipe extends Component {
 
         return <>
             <Form onSubmit={this.handleSubmit}>
-               
                 <div>
                     <div>
                         <h1>Nový recept</h1>
@@ -89,7 +93,6 @@ export default class AddRecipe extends Component {
                         <Submit value="Přidat" />
                     </div>
                 </div>
-                
             </Form>
         </>
     }

@@ -13,7 +13,7 @@ export default class Select extends Component {
 
     render() {
         return (
-            <select type="text" className="form-select form-select-sm" value={this.props.selectedItem.key} onChange={this.handleChange}>
+            <select type="text" className="form-select form-select-sm" value={this.props.selectedItem && this.props.selectedItem.key} onChange={this.handleChange}>
                 {this.props.data.map((option, i) => <option key={option.key} value={option.key}>{option.value}</option>)}
             </select>
         );

@@ -29,6 +29,7 @@ export default class Tagger extends Component {
     handleClick(item) {
         this.setState({
             ...this.state,
+            input: item,
             items: this.state.items.filter(x => x.key !== item.key)
         });
 
@@ -68,7 +69,6 @@ export default class Tagger extends Component {
         let selector;
         if (this.props.items) {
             let items = this.getRemainingItems();
-            let defaultItem = this.getDefaultItem();
 
             let disabled = items.length === 0;
             selector = <>

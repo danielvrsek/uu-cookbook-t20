@@ -45,6 +45,7 @@ class ApiClient {
             body: body && JSON.stringify(body)
         };
         let token = tokenStorage.retrieveToken();
+        console.log(token);
         if (token) {
             options.headers["Token"] = token;
         }
