@@ -13,7 +13,7 @@ export default class RecipeAdd extends Component {
     }
 
     handleSubmit(data) {
-        apiClient.createRecipe(data, (data) => navigate(`/recipes/${data.id}/edit`))
+        apiClient.createRecipe(data, (recipeId) => navigate(`/recipes/${recipeId}/edit`))
     }
 
     render() {

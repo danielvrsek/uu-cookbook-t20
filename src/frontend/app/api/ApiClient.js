@@ -67,7 +67,10 @@ class ApiClient {
     
         return fetch(this.baseUri + url, options)
             .then((res) => res.json())
-            .then((res) => callback(res.data));
+            .then((res) => callback(res.data))
+            .catch(function() {
+                console.log("error");
+            });
     }
 }
 

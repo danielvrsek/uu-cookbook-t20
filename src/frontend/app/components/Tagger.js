@@ -25,13 +25,15 @@ export default class Tagger extends Component {
     }
 
     handleClick(item) {
+        let items = this.state.items.filter(x => x.key !== item.key);
+
         this.setState({
             ...this.state,
             input: item,
-            items: this.state.items.filter(x => x.key !== item.key)
+            items
         });
 
-        this.props.onChange(this.state.items);
+        this.props.onChange(items);
     }
 
     handleSelectChange(value) {
@@ -47,10 +49,10 @@ export default class Tagger extends Component {
         this.setState({
             ...this.state,
             input: this.props.items.filter(e => !items.map(x => x.key).includes(e.key))[0],
-            items: items
+            items
         });
 
-        this.props.onChange(this.state.items);
+        this.props.onChange(items);
     }
 
     render() {

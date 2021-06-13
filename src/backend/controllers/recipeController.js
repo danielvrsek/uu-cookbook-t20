@@ -77,6 +77,11 @@ class RecipeController extends Controller {
         recipe.preparationLength = input.preparationLength;
         recipe.servingSize = input.servingSize;
 
+        recipeRecipeCategoryRepository.getForRecipe(recipe.id).forEach(unitOfWork.delete);
+        for (let categoryId of input.recipeCategories) {
+            unitOfWork.insert(new RecipeRecipeCategory(recipe.id, categoryId));
+        }
+
         unitOfWork.update(recipe);
 
         await unitOfWork.commitAsync();
@@ -98,6 +103,19 @@ class RecipeController extends Controller {
         unitOfWork.delete(recipe);
 
         await unitOfWork.commitAsync();
+    }
+
+    getAuthor(username) {
+        let loginAccount = loginAccountRepository.getByUsername(username);
+        if (!loginAccount) {
+            throw new ValidationError("Neexistující uživatel.");
+        }
+        let author = authorRepository.getById(loginAccount.authorId);
+        if (!author) {
+            throw new ValidationError("Neexistující autor.");
+        }
+
+        return author;
     }
 
     validate(input) {
