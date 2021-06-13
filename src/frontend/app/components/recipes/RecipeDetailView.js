@@ -1,14 +1,22 @@
-import { A } from '@patched/hookrouter';
-import React from 'react';
+import { A, navigate } from '@patched/hookrouter';
+import React, { Component } from 'react';
 import { Button } from '../Button';
 import './RecipeDetailView.css';
+import { apiClient } from  '../../api/ApiClient';
 
 export const RecipeDetailView = (props) => {
+
+ 
+
+    const handleDelete = () => {
+        apiClient.deleteRecipe(props.id, () => navigate('/recipes'));
+    }
+
     return <>
         <div className="container">
 
             <div className="recipe-btnEdit">
-            <A href={`/recipes/${props.id}/edit`}><i className="fas fa-edit"></i></A> &nbsp; <A className="recipe-btnDel" href="#"><i className="recipe-btnDel fas fa-trash-alt"></i></A>
+            <A href={`/recipes/${props.id}/edit`}><i className="fas fa-edit"></i></A> &nbsp; <A onClick={handleDelete} className="recipe-btnDel" href="#"><i className="recipe-btnDel fas fa-trash-alt"></i></A>
             </div>
             <div className="row">
                 <div className="col-8 text-start">
@@ -35,6 +43,7 @@ export const RecipeDetailView = (props) => {
         </div>
     </>;
 }
+
 
 function getLocalizedServingSizeString(servingSize) {
     return servingSize < 5 ? "porce" : "porcí";
