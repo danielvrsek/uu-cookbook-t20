@@ -87,7 +87,7 @@ class RecipeController extends Controller {
         await unitOfWork.commitAsync();
     }
 
-    async deleteRecipeAsync(recipeId) {
+    async deleteRecipeAsync(recipeId, context) {
         let username = context.authorization.username;
         let author = this.getAuthor(username);
 
