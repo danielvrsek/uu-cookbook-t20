@@ -1,15 +1,14 @@
 import { A, navigate } from '@patched/hookrouter';
-import React, { Component } from 'react';
-import { Button } from '../Button';
+import React from 'react';
 import './RecipeDetailView.css';
 import { apiClient } from  '../../api/ApiClient';
 
 export const RecipeDetailView = (props) => {
-
- 
-
     const handleDelete = () => {
-        apiClient.deleteRecipe(props.id, () => navigate('/recipes'));
+        apiClient.deleteRecipe(props.id, () => {
+            navigate('/recipes');
+            alert("Recept byl smazán.")
+        });
     }
 
     return <>
@@ -31,7 +30,7 @@ export const RecipeDetailView = (props) => {
                     <div className="row recipe-description">
                         {props.longDescription}
                         <div className="row recipe-description">
-                            Kategorie: {props.recipeCategories.join(', ')}
+                            Kategorie: {props.recipeCategories.map(x => x.name).join(', ')}
                         </div>
                     </div>
                     

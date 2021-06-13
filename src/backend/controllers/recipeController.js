@@ -129,11 +129,11 @@ class RecipeController extends Controller {
             errors.push("Příprava receptu musí být vyplněna.");
         }
 
-        if (!input.preparationLength) {
+        if (!input.preparationLength || input.preparationLength <= 0) {
             errors.push("Čas na přípravu musí být vyplněna.");
         }
 
-        if (!input.servingSize) {
+        if (!input.servingSize || input.servingSize <= 0) {
             errors.push("Počet porcí musí být vyplněno.");
         }
 

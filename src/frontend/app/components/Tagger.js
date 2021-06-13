@@ -5,10 +5,7 @@ import TextInput from '../common/forms/TextInput';
 export default class Tagger extends Component {
     constructor(props) {
         super(props);
-
-        console.log(this.props.items);
-        console.log(this.props.selectedItems);
-
+        
         this.state = {
             input: this.props.items[0],
             items: this.props.selectedItems ?? []

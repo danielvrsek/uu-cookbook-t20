@@ -13,8 +13,7 @@ export default class RecipeEdit extends Component{
     }
 
     handleSubmit(data) {
-        console.log("submit")
-        apiClient.editRecipe(this.props.recipeId, data, () => { })
+        apiClient.editRecipe(this.props.recipeId, data, () => alert("Recept upraven."))
     }
 
     render() {

@@ -57,7 +57,6 @@ class ApiClient {
             body: body && JSON.stringify(body)
         };
         let token = tokenStorage.retrieveToken();
-        console.log(token);
         if (token) {
             options.headers["Token"] = token;
         }
@@ -66,10 +65,16 @@ class ApiClient {
         }
     
         return fetch(this.baseUri + url, options)
-            .then((res) => res.json())
-            .then((res) => callback(res.data))
-            .catch(function() {
-                console.log("error");
+            .then(res => res.json())
+            .then(res => {
+                if (res.result !== "OK"){
+                    throw new Error(res.error.message);
+                }
+                return res;
+            })
+            .then(res => callback(res.data))
+            .catch(err => {
+                alert(err);
             });
     }
 }
