@@ -6,7 +6,10 @@ import './RecipeDetailView.css';
 export const RecipeDetailView = (props) => {
     return <>
         <div className="container">
-            <A href={`/recipes/${props.id}/edit`}><i className="fas fa-edit"></i></A><i className="fas fa-trash-alt"></i>
+
+            <div className="recipe-btnEdit">
+            <A href={`/recipes/${props.id}/edit`}><i className="fas fa-edit"></i></A> &nbsp; <A className="recipe-btnDel" href="#"><i className="recipe-btnDel fas fa-trash-alt"></i></A>
+            </div>
             <div className="row">
                 <div className="col-8 text-start">
                     <img src={`/img/${props.thumbnail}`} className="recipe-thumbnail" />
@@ -19,7 +22,14 @@ export const RecipeDetailView = (props) => {
                     <RecipeInfo label="Čas přípravy" value={`${props.preparationLength} min.`} />
                     <div className="row recipe-description">
                         {props.longDescription}
+                        <div className="row recipe-description">
+                            Kategorie: 
+                        </div>
                     </div>
+                    
+                </div>
+                <div className="recipe-author">
+                    Autor: 
                 </div>
             </div>
         </div>

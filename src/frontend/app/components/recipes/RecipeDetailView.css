@@ -9,3 +9,32 @@
 .recipe-title {
     padding-bottom: 1rem;
 }
+
+.link-text {
+    text-decoration: none;
+}
+
+.recipe-author {
+    padding-right: 78rem;
+    font-weight: bolder;
+}
+
+.recipe-btnEdit {
+    height: 30px;
+    padding-right: 96%;
+    text-decoration: none;
+    color: green;
+    
+}
+
+.recipe-btnDel {
+    text-decoration: none;
+    color: red
+}
+
+
+
+ 
+
+
+
