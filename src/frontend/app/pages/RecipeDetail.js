@@ -16,6 +16,7 @@ export default class RecipeDetail extends Component{
         }
 
         return <>
+            <h1>Detail receptu</h1>
             <RecipeDetailView {...this.state.data} />
         </>;
     }

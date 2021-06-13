@@ -25,7 +25,7 @@ const routes = {
     '/contact': () => <AuthorListPage />,
     '/addrecipe' : () => <AddRecipe />,
     '/login': () => <Login />,
-    '/edit/': () => <EditRecipe />
+    '/recipes/:recipeId/edit': ({ recipeId }) => <EditRecipe recipeId={recipeId} />
 }
  
 const App = () => {

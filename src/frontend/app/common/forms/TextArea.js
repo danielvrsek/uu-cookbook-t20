@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import './Forms.css';
 
 export default class TextArea extends Component {
     constructor(props) {

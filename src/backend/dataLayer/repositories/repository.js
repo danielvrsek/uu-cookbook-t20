@@ -3,6 +3,10 @@ import { database } from './../database.js'
 export class Repository {
     constructor(tableName) {
         this.tableName = tableName;
+
+        this.getTable = this.getTable.bind(this);
+        this.getAll = this.getAll.bind(this);
+        this.getById = this.getById.bind(this);
     }
 
     getTable() {

@@ -15,8 +15,8 @@ export default class RecipeThumbnail extends Component {
 		}
 
 		return (
-			<A href={`/recipes/${this.props.id}`}>
-				<div className="col">
+			<div className="col">
+				<A href={`/recipes/${this.props.id}`}>
 					<div className="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style={style}>
 						<div className="d-flex flex-column h-100 p-3 pb-2 text-white text-shadow-1">
 							<label className="pt-5 mt-4 mb-3 lh-1 fw-bold">{this.props.title}</label>
@@ -34,11 +34,8 @@ export default class RecipeThumbnail extends Component {
 							</ul>
 						</div>
 					</div>
-					<i className="fas fa-edit"></i> &nbsp; &nbsp; &nbsp; <i className="fas fa-trash-alt"></i>
-					<br />
-				</div>
-			</A>
-			
+				</A>
+			</div>
 		)
 	}
 

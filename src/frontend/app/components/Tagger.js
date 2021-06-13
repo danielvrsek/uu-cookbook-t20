@@ -6,20 +6,18 @@ export default class Tagger extends Component {
     constructor(props) {
         super(props);
 
+        console.log(this.props.items);
+        console.log(this.props.selectedItems);
+
         this.state = {
             input: this.props.items[0],
-            items: []
+            items: this.props.selectedItems ?? []
         };
 
         this.handleClick = this.handleClick.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.getDefaultItem = this.getDefaultItem.bind(this);
+        this.handleSelectChange = this.handleSelectChange.bind(this);
         this.getRemainingItems = this.getRemainingItems.bind(this);
-    }
-
-    getDefaultItem() {
-        return this.getRemainingItems()[0];
     }
 
     getRemainingItems() {
@@ -34,16 +32,6 @@ export default class Tagger extends Component {
         });
 
         this.props.onChange(this.state.items);
-    }
-
-    handleInputChange(name, value) {
-        this.setState({
-            ...this.setState,
-            input: {
-                key: value,
-                value
-            }
-        })
     }
 
     handleSelectChange(value) {
@@ -67,26 +55,16 @@ export default class Tagger extends Component {
 
     render() {
         let selector;
-        if (this.props.items) {
-            let items = this.getRemainingItems();
+        let items = this.getRemainingItems();
 
-            let disabled = items.length === 0;
-            selector = <>
-                <label className="text-secondary">
-                    {this.props.label}:
-                </label>
-                <Select data={items} selectedItem={this.state.input} onChange={this.handleSelectChange} />
-                <button disabled={disabled} className="btn btn-secondary" type="button" onClick={this.handleSubmit}>Přidat</button>
-            </>
-        } else {
-            const handleKeyDown = (event) => {
-                if (event.key === 'Enter') {
-                    this.handleSubmit();
-                }
-            }
-
-            selector = <TextInput name="itemName" value={this.state.input} label={this.props.label} onChange={this.handleInputChange} onKeyDown={handleKeyDown} />;
-        }
+        let disabled = items.length === 0;
+        selector = <>
+            <label className="text-secondary">
+                {this.props.label}:
+            </label>
+            <Select data={items} selectedItem={this.state.input} onChange={this.handleSelectChange} />
+            <button disabled={disabled} className="btn btn-secondary" type="button" onClick={this.handleSubmit}>Přidat</button>
+        </>
 
         return (
             <>

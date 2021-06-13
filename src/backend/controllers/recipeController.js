@@ -1,5 +1,7 @@
 import { authorRepository } from "../dataLayer/repositories/authorRepository.js";
 import { loginAccountRepository } from "../dataLayer/repositories/loginAccountRepository.js";
+import { recipeRecipeCategoryRepository } from "../dataLayer/repositories/recipeCategoryRecipeRepository.js";
+import { recipeCategoryRepository } from "../dataLayer/repositories/recipeCategoryRepository.js";
 import { recipeRepository } from "../dataLayer/repositories/recipeRepository.js";
 import { unitOfWork } from "../dataLayer/unitOfWork.js";
 import { Recipe } from "../entities/recipe.js";
@@ -27,6 +29,8 @@ class RecipeController extends Controller {
             throw new ValidationError(`Recept s id ${recipeId} neexistuje.`);
         }
 
+        recipe.recipeCategories = recipeRecipeCategoryRepository.getForRecipe(recipe.id).map(x => recipeCategoryRepository.getById(x.recipeCategoryId));
+
         return this.serialize(recipe);
     }
 
@@ -38,14 +42,7 @@ class RecipeController extends Controller {
         this.validate(input);
 
         let username = context.authorization.username;
-        let loginAccount = loginAccountRepository.getByUsername(username);
-        if (!loginAccount) {
-            throw new ValidationError("Neexistující uživatel.");
-        }
-        let author = authorRepository.getById(loginAccount.authorId);
-        if (!author) {
-            throw new ValidationError("Neexistující autor.");
-        }
+        let author = this.getAuthor(username);
 
         let recipe = new Recipe(input.title, author.id, input.longDescription, input.preparationLength, input.servingSize);
         unitOfWork.insert(recipe);
@@ -55,6 +52,39 @@ class RecipeController extends Controller {
         }
 
         await unitOfWork.commitAsync();
+    }
+
+    async updateRecipe(input, context) {
+        if (!input) {
+            throw ValidationError("Recept nemohl být vytvořen. Nevalidní vstup.");
+        }
+
+        this.validate(input);
+
+        let username = context.authorization.username;
+        let author = this.getAuthor(username);
+
+        let recipe = new Recipe(input.title, author.id, input.longDescription, input.preparationLength, input.servingSize);
+        unitOfWork.insert(recipe);
+
+        for (let categoryId of input.recipeCategories) {
+            unitOfWork.insert(new RecipeRecipeCategory(recipe.id, categoryId));
+        }
+
+        await unitOfWork.commitAsync();
+    }
+
+    getAuthor(username) {
+        let loginAccount = loginAccountRepository.getByUsername(username);
+        if (!loginAccount) {
+            throw new ValidationError("Neexistující uživatel.");
+        }
+        let author = authorRepository.getById(loginAccount.authorId);
+        if (!author) {
+            throw new ValidationError("Neexistující autor.");
+        }
+
+        return author;
     }
 
     validate(input) {

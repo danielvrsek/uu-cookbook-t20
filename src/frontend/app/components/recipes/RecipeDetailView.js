@@ -1,10 +1,12 @@
+import { A } from '@patched/hookrouter';
 import React from 'react';
+import { Button } from '../Button';
 import './RecipeDetailView.css';
 
 export const RecipeDetailView = (props) => {
     return <>
-        <h1>Detail receptu</h1>
         <div className="container">
+            <A href={`/recipes/${props.id}/edit`}><i className="fas fa-edit"></i></A><i className="fas fa-trash-alt"></i>
             <div className="row">
                 <div className="col-8 text-start">
                     <img src={`/img/${props.thumbnail}`} className="recipe-thumbnail" />
@@ -13,7 +15,7 @@ export const RecipeDetailView = (props) => {
                     <div className="row recipe-title">
                         <h3>{props.title}</h3>
                     </div>
-                    <RecipeInfo label="Počet porcí" value={`${props.servingSize} porce`} />
+                    <RecipeInfo label="Počet porcí" value={`${props.servingSize} ${getLocalizedServingSizeString(props.servingSize)}`} />
                     <RecipeInfo label="Čas přípravy" value={`${props.preparationLength} min.`} />
                     <div className="row recipe-description">
                         {props.longDescription}
@@ -22,6 +24,10 @@ export const RecipeDetailView = (props) => {
             </div>
         </div>
     </>;
+}
+
+function getLocalizedServingSizeString(servingSize) {
+    return servingSize < 5 ? "porce" : "porcí";
 }
 
 const RecipeInfo = ({ label, value}) => {

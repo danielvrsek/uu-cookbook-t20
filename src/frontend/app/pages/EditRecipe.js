@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { apiClient } from "../api/ApiClient";
 import RecipeEditForm from "../components/recipes/RecipeEditForm";
 export default class EditRecipe extends Component{
 
@@ -6,11 +7,15 @@ export default class EditRecipe extends Component{
         super(props);
 
         this.state = {};
-        apiClient.getRecipes(this.props.id, (data) => this.setState({ data }))
+        apiClient.getRecipe(this.props.recipeId, (data) => this.setState({ data }))
     }
     render() {
+        if (!this.state.data) {
+            return "Loading...";
+        }
+
         return <>
-         {this.state.data && <RecipeEditForm {...this.state.data} />}
+         {this.state.data && <RecipeEditForm model={this.state.data} />}
         </>;
     }
 }

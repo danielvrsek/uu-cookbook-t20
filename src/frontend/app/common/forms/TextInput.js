@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import './Forms.css';
 
 export default class TextInput extends Component {
     constructor(props) {

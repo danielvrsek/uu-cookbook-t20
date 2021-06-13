@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import './Forms.css';
 
 export default class NumberInput extends Component {
     constructor(props) {
