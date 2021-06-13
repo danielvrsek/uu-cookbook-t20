@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class RecipeThumbnail extends Component {
+export default class RecipeThumbnailRan extends Component {
 	constructor(props) {
 		super(props);
 	}
@@ -32,7 +32,7 @@ export default class RecipeThumbnail extends Component {
 						</ul>
 					</div>
 				</div>
-				<i className="fas fa-edit"></i> &nbsp; &nbsp; &nbsp; <i className="fas fa-trash-alt"></i>
+				
 				<br />
 			</div>
 
