@@ -3,6 +3,7 @@ import { loginAccountRepository } from "../dataLayer/repositories/loginAccountRe
 import { recipeRepository } from "../dataLayer/repositories/recipeRepository.js";
 import { unitOfWork } from "../dataLayer/unitOfWork.js";
 import { Recipe } from "../entities/recipe.js";
+import { RecipeRecipeCategory } from "../entities/recipeRecipeCategory.js";
 import { ValidationError } from "../errors.js";
 import { Controller } from "./controller.js";
 
@@ -25,14 +26,12 @@ class RecipeController extends Controller {
             throw ValidationError("Recept nemohl být vytvořen. Nevalidní vstup.");
         }
 
-        console.log(input);
-
         this.validate(input);
 
         let username = context.authorization.username;
         let loginAccount = loginAccountRepository.getByUsername(username);
         if (!loginAccount) {
-            throw new ValidationError("Invalidní přihlášení.");
+            throw new ValidationError("Neexistující uživatel.");
         }
         let author = authorRepository.getById(loginAccount.authorId);
         if (!author) {
@@ -41,6 +40,11 @@ class RecipeController extends Controller {
 
         let recipe = new Recipe(input.title, author.id, input.longDescription, input.preparationLength, input.servingSize);
         unitOfWork.insert(recipe);
+
+        for (let categoryId of input.recipeCategories) {
+            unitOfWork.insert(new RecipeRecipeCategory(recipe.id, categoryId));
+        }
+
         await unitOfWork.commitAsync();
     }
 
@@ -61,6 +65,10 @@ class RecipeController extends Controller {
 
         if (!input.servingSize) {
             errors.push("Počet porcí musí být vyplněno.");
+        }
+
+        if (!input.recipeCategories || !input.recipeCategories instanceof Array) {
+            errors.push("Neplatná hodnota kategorie receptů.");
         }
 
         if (errors.length > 0) {

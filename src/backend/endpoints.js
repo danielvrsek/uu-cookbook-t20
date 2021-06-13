@@ -53,7 +53,6 @@ export function declareEndpoints(app) {
 
  async function handleAuthorizedResponseAsync(req, res, handler) {
     let token = req.header("Token");
-    console.log(`Received authorization token '${token}'`)
     if (!token || !authorizationService.validateToken(token)) {
         console.warn(`Invalid token '${token}'`)
         res.status(401).send();

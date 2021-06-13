@@ -7,20 +7,35 @@ export default class Tagger extends Component {
         super(props);
 
         this.state = {
-            input: "",
+            input: this.props.items[0],
             items: []
         };
 
         this.handleClick = this.handleClick.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.getDefaultItem = this.getDefaultItem.bind(this);
+        this.getRemainingItems = this.getRemainingItems.bind(this);
+    }
+
+    getDefaultItem() {
+        return this.getRemainingItems()[0];
+    }
+
+    getRemainingItems() {
+        return this.props.items.filter(e => !this.state.items.map(x => x.key).includes(e.key));
     }
 
     handleClick(item) {
+        let items = this.state.items.map(x => x.key).filter(x => x !== item.key);
+
         this.setState({
             ...this.state,
-            items: this.state.items.filter(x => x !== item)
+            input: this.props.items.filter(e => !items.includes(e.key))[0],
+            items: this.state.items.filter(x => x.key !== item.key)
         });
+
+        this.props.onChange(this.state.items);
     }
 
     handleInputChange(value) {
@@ -31,31 +46,32 @@ export default class Tagger extends Component {
     }
 
     handleSubmit() {
-        if (this.state.input === "") {
+        if (!this.state.input) {
             return;
         }
 
         this.setState({
             ...this.state,
-            input: "",
+            input: this.getRemainingItems().filter(e => this.state.input.key !== e.key)[0],
             items: [ ...this.state.items, this.state.input]
         });
+
+        this.props.onChange(this.state.items);
     }
 
     render() {
         let selector;
         if (this.props.items) {
-            let items = this.props.items.filter(e => !this.state.items.includes(e.value));
-            if (this.state.input === "") {
-                items = [ "", ...items ];
-            }
+            let items = this.getRemainingItems();
+            let defaultItem = this.getDefaultItem();
 
+            let disabled = items.length === 0;
             selector = <>
                 <label className="text-secondary">
                     {this.props.label}:
                 </label>
-                <Select data={items} onChange={this.handleInputChange} />
-                <button disabled={items.length === 0 || this.state.input == ""} className="btn btn-secondary" type="button" onClick={this.handleSubmit}>Přidat</button>
+                <Select data={items} selectedItem={defaultItem} onChange={this.handleInputChange} />
+                <button disabled={disabled} className="btn btn-secondary" type="button" onClick={this.handleSubmit}>Přidat</button>
             </>
         } else {
             const handleKeyDown = (event) => {
@@ -73,9 +89,9 @@ export default class Tagger extends Component {
                 <div className="input-group mb-3">
                     {selector}
                 </div>
-                <div class="container">
-                    <div class="row row-cols-3">
-                        {this.state.items.map(item => <Tag key={item} value={item} onClick={this.handleClick} />)}
+                <div className="container">
+                    <div className="row row-cols-3">
+                        {this.state.items.map(item => <Tag key={item.key} item={item} onClick={this.handleClick} />)}
                     </div>
                 </div>
             </>
@@ -83,12 +99,12 @@ export default class Tagger extends Component {
     }
 }
 
-var Tag = ({value, onClick}) => {
-    let handleClick = () => onClick(value);
+var Tag = ({item, onClick}) => {
+    let handleClick = () => onClick(item);
     return (
         <>
-            <div class="col">
-                <a href="#" className="list-group-item list-group-item-action" onClick={handleClick}>{value}</a>
+            <div className="col">
+                <a href="#" className="list-group-item list-group-item-action" onClick={handleClick}>{item.value}</a>
             </div>
         </>
     )

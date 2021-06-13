@@ -14,9 +14,7 @@ export default class LoginInput extends Component {
 
     render() {
         return (
-
-                <input className="login-box" type="text" name={this.props.name} value={this.props.value} onChange={this.handleChange} onKeyDown={this.props.onKeyDown} />
-            
+            <input className="login-box" type="text" name={this.props.name} value={this.props.value} onChange={this.handleChange} />
         );
     }
 }

@@ -32,17 +32,13 @@ class NavBar extends Component {
                     {NavItems.map((item, index) => {
                         return (
                             <li key={index}>
-                                
-
                                 <A className={item.cName} href={item.url}>
                                 {item.label} &nbsp; <i className={item.img}></i>
                                 </A>
                             </li>
-                            
                         )
                     })}
                     
-
                 </ul>
                 <div><A href ="/login">
                     <Button>Přihlásit se</Button></A>

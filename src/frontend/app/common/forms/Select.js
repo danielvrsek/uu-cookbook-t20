@@ -8,14 +8,13 @@ export default class Select extends Component {
 
     handleChange(event) {
         const target = event.target;
-        this.props.onChange(target.value);
+        this.props.onChange(this.props.data.filter(x => x.key === target.value)[0]);
     }
 
     render() {
-        console.log(this.props.data)
         return (
-            <select type="text" className="form-select form-select-sm" onChange={this.handleChange}>
-                {this.props.data.map((option, i) => <option selected={i === 0} key={option.key}>{option.value}</option>)}
+            <select type="text" className="form-select form-select-sm" value={this.props.selectedItem.key} onChange={this.handleChange}>
+                {this.props.data.map((option, i) => <option key={option.key} value={option.key}>{option.value}</option>)}
             </select>
         );
     }

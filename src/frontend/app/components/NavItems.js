@@ -1,4 +1,3 @@
-
 export const NavItems = [
     {
         label: "Recepty",
@@ -19,8 +18,4 @@ export const NavItems = [
         img: "fas fa-user-friends"
     
     }
-
-
-
 ]
-

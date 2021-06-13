@@ -9,10 +9,7 @@ export default function MainLayout(props) {
         
         <div className="main">
             <div className="nav">
-
                 <NavBar />
-                
-
             </div>
             <div className="container">
                 {props.children}

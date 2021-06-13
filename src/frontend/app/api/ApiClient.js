@@ -7,12 +7,12 @@ class ApiClient {
     }
 
     login(credentials, callback) {
-        callback = (res) => {
+        let tokenCallback = (res) => {
             this.token = res;
             callback(res);
         }
 
-        this.fetchApi("POST", "/api/login", credentials, callback);
+        this.fetchApi("POST", "/api/login", credentials, tokenCallback);
     }
 
     getRecipes(callback) {
@@ -37,6 +37,27 @@ class ApiClient {
 
     editAuthor(authorId, payload, callback) {
         this.fetchApi("PUT", `/api/authors/${authorId}`, payload, callback);
+    }
+
+    postFile(url, body, callback) {
+        let options = {
+            method,
+            headers: {
+                "Token": this.token,
+
+            },
+            body: body && JSON.stringify(body)
+        };
+        if (this.token) {
+            options.headers["Token"] = this.token;
+        }
+        if (body) {
+            options.headers["Content-Type"] = "application/json";
+        }
+    
+        return fetch(this.baseUri + url, options)
+            .then((res) => res.json())
+            .then((res) => callback(res.data));
     }
 
     fetchApi(method, url, body, callback) {

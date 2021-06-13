@@ -43,21 +43,21 @@ function seedLoginAccounts() {
 }
 
 function seedRecipeCategory() {
-    var cakes = new RecipeCategory("Dorty");
-    var cheesecakes = new RecipeCategory("Cheesecake");
-    unitOfWork.insert(cakes);
-    unitOfWork.insert(cheesecakes);
-
     unitOfWork.insertAll([
+        new RecipeCategory("Dorty"),
+        new RecipeCategory("Cheesecake"),
         new RecipeCategory("Bezlepkové"),
         new RecipeCategory("Vegetarianské"),
         new RecipeCategory("Veganské"),
-        new RecipeCategory("Nízký obsah cukru"),
+        new RecipeCategory("Nízký obsah cukru"), // 5
         new RecipeCategory("Bez laktózy"),
         new RecipeCategory("Fitness"),
         new RecipeCategory("Levné recepty"),
-        new RecipeCategory("Čokoládové", cakes.id),
-        new RecipeCategory("Ovocné", cheesecakes.id)
+        new RecipeCategory("Čokoládové"),
+        new RecipeCategory("Ovocné"), // 10
+        new RecipeCategory("Pečené"),
+        new RecipeCategory("Nepečené"),
+        new RecipeCategory("Dezerty"),
     ]);
 }
 
@@ -65,12 +65,12 @@ function seedRecipe() {
     let authors = authorRepository.getAll();
 
     let data = [
-        new Recipe("Cokoladovy dort", authors[0].id, "Dlouhy popis", 50, 5),
-        new Recipe("Slehackovy dort", authors[1].id, "Dlouhy popis", 50, 5),
-        new Recipe("Babovka", authors[1].id, "Dlouhy popis", 50, 5),
-        new Recipe("Malinovy chesecake", authors[2].id, "Dlouhy popis", 50, 5),
-        new Recipe("Chesecake z lesnich plodu", authors[0].id, "Dlouhy popis", 50, 5),
-        new Recipe("Misarezy", authors[3].id, "Dlouhy popis", 50, 5)
+        new Recipe("Extra čokoládový cheesecake s malinami", authors[0].id, "Jednoduché, rychlé a velmi chutné. Pokud jste milovníkem čokolády, doporučuji vyzkoušet. Zamilujete se. Čokoládový mascarpone krém, na vrchu jemná čokoládová poleva, která se při krájení vůbec neláme a jako při každém cheesecaku, sušenkový křupavý základ.", 35, 4, "58347411_71564828563b06_680.jpg"),
+        new Recipe("Tříbarevný dort bez pečení", authors[1].id, "Neobvyklý dezert, který si zamilujete. Nejen kvůli rychlé přípravě, ale také díky osvěžující chuti, která během teplých letních dnů jistě potěší. Bez pečení, bez želatiny, bez zdlouhavé přípravy. Opravdu za 15 minut to máte připraveno ve formě a už jen vyčkat, dokud to ztuhne.", 15, 3, "76857705_523e1114e9e906_680.jpg"),
+        new Recipe("Lotusové dortíčky", authors[1].id, "Znáte sušenky Lotus? Vyzkoušejte připravit tento fantastický dezert.", 55, 4, "56805520_10a417285b8ff5_680.jpg"),
+        new Recipe("Malinovy chesecake", authors[2].id, "Dlouhy popis", 50, 5, ""),
+        new Recipe("Chesecake z lesnich plodu", authors[0].id, "Dlouhy popis", 50, 5, ""),
+        new Recipe("Misarezy", authors[3].id, "Dlouhy popis", 50, 5, "")
     ];
     unitOfWork.insertAll(data);
 }
@@ -80,15 +80,15 @@ function seedRecipeCategoryRecipe() {
     let recipes = recipeRepository.getAll();
 
     let data = [
-        new RecipeRecipeCategory(recipes[0].id, recipeCategories[0].id),
         new RecipeRecipeCategory(recipes[0].id, recipeCategories[1].id),
-        new RecipeRecipeCategory(recipes[0].id, recipeCategories[2].id),
+        new RecipeRecipeCategory(recipes[0].id, recipeCategories[9].id),
+        new RecipeRecipeCategory(recipes[0].id, recipeCategories[10].id),
 
         new RecipeRecipeCategory(recipes[1].id, recipeCategories[0].id),
-        new RecipeRecipeCategory(recipes[1].id, recipeCategories[3].id),
-        new RecipeRecipeCategory(recipes[1].id, recipeCategories[5].id),
+        new RecipeRecipeCategory(recipes[1].id, recipeCategories[12].id),
 
-        new RecipeRecipeCategory(recipes[2].id, recipeCategories[6].id),
+        new RecipeRecipeCategory(recipes[2].id, recipeCategories[12].id),
+        new RecipeRecipeCategory(recipes[2].id, recipeCategories[13].id),
 
         new RecipeRecipeCategory(recipes[3].id, recipeCategories[4].id),
         new RecipeRecipeCategory(recipes[3].id, recipeCategories[5].id),

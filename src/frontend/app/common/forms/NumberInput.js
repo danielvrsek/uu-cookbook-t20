@@ -13,10 +13,7 @@ export default class NumberInput extends Component {
 
     render() {
         return (
-            
-                
-                <input type="number" name={this.props.name} value={this.props.value} onChange={this.handleChange} />
-            
+            <input type="number" name={this.props.name} value={this.props.value} onChange={this.handleChange} />
         );
     }
 }

@@ -16,6 +16,7 @@ export default class AddRecipe extends Component {
         this.state = { ...props };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleCategoryChange = this.handleCategoryChange.bind(this);
 
         apiClient.getRecipeCategories((data) => this.setState({ ...this.state, recipeCategories: data }))
     }
@@ -26,15 +27,23 @@ export default class AddRecipe extends Component {
         });
     }
 
+    handleCategoryChange(items) {
+        this.setState({
+            ...this.state,
+            selectedCategories: items.map(x => x.key)
+        });
+    }
+
     handleSubmit(event) {
         const data = {
             title: this.state.title,
             servingSize: this.state.servingSize,
             preparationLength: this.state.preparationLength,
-            longDescription: this.state.longDescription
+            longDescription: this.state.longDescription,
+            recipeCategories: this.state.selectedCategories
         }
 
-        apiClient.createRecipe(this.state, data, () => { })
+        apiClient.createRecipe(data, () => { })
         event.preventDefault();
     }
 
@@ -72,7 +81,7 @@ export default class AddRecipe extends Component {
 
                         <br />
                         <br />
-                        <Tagger label="Kategorie" onChange={this.handleInputChange} items={this.state.recipeCategories.map(x => ({
+                        <Tagger label="Kategorie" onChange={this.handleCategoryChange} items={this.state.recipeCategories.map(x => ({
                             key: x.id,
                             value: x.name
                         }))} />
