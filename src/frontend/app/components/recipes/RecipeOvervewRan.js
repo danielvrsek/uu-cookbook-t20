@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RecipeThumbnail from './RecipeThumbnail';
+import RecipeThumbnailRan from './RecipeThumbnailRan';
 
 export default class RecipeOverviewRan extends Component {
     constructor(props) {
@@ -19,7 +19,7 @@ export default class RecipeOverviewRan extends Component {
             <div className="container px-4 py-5" id="custom-cards">
                 <div className="row row-cols-3 row-cols-lg-5 align-items-stretch g-4 py-5">
                     {this.state.selected.map(recipe => 
-                        <RecipeThumbnail key={recipe.id} {...recipe} />
+                        <RecipeThumbnailRan key={recipe.id} {...recipe} />
                     )}
                 </div>
             </div>
