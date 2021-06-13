@@ -63,42 +63,11 @@
       "title": "Extra čokoládový cheesecake s malinami",
       "authorId": "6a908c88-e8c4-8581-bcd2-da7d6bb58a7f",
       "longDescription": "Jednoduché, rychlé a velmi chutné. Pokud jste milovníkem čokolády, doporučuji vyzkoušet. Zamilujete se. Čokoládový mascarpone krém, na vrchu jemná čokoládová poleva, která se při krájení vůbec neláme a jako při každém cheesecaku, sušenkový křupavý základ.",
-      "preparationLength": 35,
+      "preparationLength": "30",
       "servingSize": 4,
       "thumbnail": "58347411_71564828563b06_680.jpg",
       "id": "f925039a-4a18-08ba-1770-5948ca92892f",
-      "recipeCategories": [
-        {
-          "__type__": "recipeCategory",
-          "name": "Cheesecake",
-          "id": "002a2764-2ea6-b2c2-31d0-823e3e12ce42"
-        },
-        {
-          "__type__": "recipeCategory",
-          "name": "Čokoládové",
-          "id": "7813cb31-b305-d819-14e6-81bf66e19b82"
-        },
-        {
-          "__type__": "recipeCategory",
-          "name": "Dorty",
-          "id": "f2b1bbb4-3f28-cc6a-fdb3-a0604ff1811a"
-        },
-        {
-          "__type__": "recipeCategory",
-          "name": "Dorty",
-          "id": "f2b1bbb4-3f28-cc6a-fdb3-a0604ff1811a"
-        },
-        {
-          "__type__": "recipeCategory",
-          "name": "Bezlepkové",
-          "id": "96d88732-9fd1-fc6e-263e-925e4d5f5fe9"
-        },
-        {
-          "__type__": "recipeCategory",
-          "name": "Vegetarianské",
-          "id": "483a1646-b3ae-096d-acbb-bcaea3168978"
-        }
-      ]
+      "recipeCategories": []
     },
     {
       "title": "Tříbarevný dort bez pečení",
@@ -239,26 +208,6 @@
       "recipeId": "cbef35f7-87c4-4b42-bac6-43ed12e9ec5f",
       "recipeCategoryId": "a5bf58b3-baa9-ff4b-2738-9870c7aaaeb4",
       "id": "b7f306da-d0f9-13f3-56e8-bc63b23f1068"
-    },
-    {
-      "recipeId": "f925039a-4a18-08ba-1770-5948ca92892f",
-      "recipeCategoryId": "002a2764-2ea6-b2c2-31d0-823e3e12ce42",
-      "id": "64049149-edd5-5b5c-b685-367e273150f8"
-    },
-    {
-      "recipeId": "f925039a-4a18-08ba-1770-5948ca92892f",
-      "recipeCategoryId": "7813cb31-b305-d819-14e6-81bf66e19b82",
-      "id": "717ab9c1-33f7-92cb-f207-ef61a9dcced0"
-    },
-    {
-      "recipeId": "f925039a-4a18-08ba-1770-5948ca92892f",
-      "recipeCategoryId": "96d88732-9fd1-fc6e-263e-925e4d5f5fe9",
-      "id": "15b53e9c-66a0-b7b5-83f1-23e1764c7f26"
-    },
-    {
-      "recipeId": "f925039a-4a18-08ba-1770-5948ca92892f",
-      "recipeCategoryId": "483a1646-b3ae-096d-acbb-bcaea3168978",
-      "id": "cb2aa27d-e5cd-3cb1-7660-f4b17312efc1"
     }
   ]
 }

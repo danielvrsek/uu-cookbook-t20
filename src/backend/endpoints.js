@@ -43,7 +43,11 @@ export function declareEndpoints(app) {
 
     app.put('/api/recipes/:recipeId', function (req, res) {
         handleAuthorizedResponseAsync(req, res, (context) => recipeController.updateRecipeAsync(req.params.recipeId, req.body, context));
-    });    
+    });
+
+    app.delete('/api/recipes/:recipeId', function (req, res) {
+        handleAuthorizedResponseAsync(req, res, (context) => recipeController.updateRecipeAsync(req.params.recipeId, req.body, context));
+    });
     // ******** RECIPES ********
 
     // ******** RECIPE CATEGORIES ********

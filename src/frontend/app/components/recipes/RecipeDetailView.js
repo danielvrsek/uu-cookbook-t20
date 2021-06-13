@@ -23,13 +23,13 @@ export const RecipeDetailView = (props) => {
                     <div className="row recipe-description">
                         {props.longDescription}
                         <div className="row recipe-description">
-                            Kategorie: 
+                            Kategorie: {props.recipeCategories.join(', ')}
                         </div>
                     </div>
                     
                 </div>
-                <div className="recipe-author">
-                    Autor: 
+                <div className="text-start">
+                    Autor: {props.authorId}
                 </div>
             </div>
         </div>
