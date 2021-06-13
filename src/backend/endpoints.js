@@ -46,7 +46,7 @@ export function declareEndpoints(app) {
     });
 
     app.delete('/api/recipes/:recipeId', function (req, res) {
-        handleAuthorizedResponseAsync(req, res, (context) => recipeController.updateRecipeAsync(req.params.recipeId, req.body, context));
+        handleAuthorizedResponseAsync(req, res, (context) => recipeController.deleteRecipeAsync(req.params.recipeId, context));
     });
     // ******** RECIPES ********
 
