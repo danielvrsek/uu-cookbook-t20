@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Tagger from "../components/Tagger";
+import Category from "../components/Category";
 export default class Categories extends Component{
 
 
@@ -16,6 +17,7 @@ export default class Categories extends Component{
                 value: "test2"
             }
          ]} />
+         <Category />
         </>;
     }
 }
