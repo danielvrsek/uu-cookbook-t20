@@ -7,10 +7,10 @@ export default class RecipeThumbnail extends Component {
 
 	render() {
 		let style = {
-			backgroundImage: `url('img/${this.props.thumbnail}')`, 
-			backgroundSize: "cover", 
-			backgroundRepeat: "no-repeat", 
-			backgroundPosition: "center center" 
+			backgroundImage: `url('img/${this.props.thumbnail}')`,
+			backgroundSize: "cover",
+			backgroundRepeat: "no-repeat",
+			backgroundPosition: "center center"
 		}
 
 		return (
@@ -26,13 +26,16 @@ export default class RecipeThumbnail extends Component {
 								<small>{this.props.servingSize} {this.getLocalizedServingSizeString(this.props.servingSize)}</small>
 							</li>
 							<li className="d-flex align-items-center">
-							<svg className="bi me-2" width="1em" height="1em"><use xlinkHref="#calendar3"></use></svg>
+								<svg className="bi me-2" width="1em" height="1em"><use xlinkHref="#calendar3"></use></svg>
 								<small>{this.props.preparationLength} min.</small>
 							</li>
 						</ul>
 					</div>
 				</div>
+				<i className="fas fa-edit"></i> &nbsp; &nbsp; &nbsp; <i className="fas fa-trash-alt"></i>
+				<br />
 			</div>
+
 		)
 	}
 

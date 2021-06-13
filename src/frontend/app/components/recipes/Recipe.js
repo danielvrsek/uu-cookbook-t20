@@ -25,6 +25,7 @@ render() {
         <br />
         <A href="/addrecipe"><button type="submit" class="btn btn-success">Přidat recept</button></A>
         <RecipeOverview recipes={this.state.data} />
+    
     </>;
 }
 }
