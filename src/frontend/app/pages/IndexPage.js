@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import RecipeOverview from "../components/recipes/RecipeOverview";
 import { apiClient } from '../api/ApiClient'
+import RecipeOverviewRan from "../components/recipes/RecipeOvervewRan";
 
 export default class IndexPage extends Component{
     constructor(props) {
@@ -16,8 +17,8 @@ export default class IndexPage extends Component{
         }
 
         return <>
-            <h1>Recepty</h1>
-            <RecipeOverview recipes={this.state.data} />
+            <h1>Tipy na dnešek!</h1>
+            <RecipeOverviewRan recipes={this.state.data} />
         </>;
     }
 }
