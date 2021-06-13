@@ -9,8 +9,8 @@ export class Form extends Component {
     }
 
     handleSubmit(event) {
-        this.props.onSubmit();
         event.preventDefault();
+        this.props.onSubmit();
     }
 
     render() {

@@ -1,10 +1,11 @@
+import { navigate } from '@patched/hookrouter';
 import React, { Component } from 'react';
 import { apiClient } from '../api/ApiClient';
 import '../components/LoginForm.css';
 import RecipeEditForm from '../components/recipes/RecipeEditForm';
 
 
-export default class AddRecipe extends Component {
+export default class RecipeAdd extends Component {
     constructor(props) {
         super(props);
 
@@ -12,14 +13,13 @@ export default class AddRecipe extends Component {
     }
 
     handleSubmit(data) {
-        apiClient.createRecipe(data, () => { })
-        event.preventDefault();
+        apiClient.createRecipe(data, (data) => navigate(`/recipes/${data.id}/edit`))
     }
 
     render() {
         return <>
             <h1>Upravit recept</h1>
-            <RecipeEditForm />
+            <RecipeEditForm onSubmit={this.handleSubmit} />
         </>
     }
 }

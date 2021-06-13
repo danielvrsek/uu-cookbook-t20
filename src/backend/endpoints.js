@@ -40,6 +40,10 @@ export function declareEndpoints(app) {
     app.post('/api/recipes', function (req, res) {
         handleAuthorizedResponseAsync(req, res, (context) => recipeController.createRecipeAsync(req.body, context));
     });
+
+    app.put('/api/recipes/:recipeId', function (req, res) {
+        handleAuthorizedResponseAsync(req, res, (context) => recipeController.updateRecipeAsync(req.params.recipeId, req.body, context));
+    });    
     // ******** RECIPES ********
 
     // ******** RECIPE CATEGORIES ********

@@ -6,7 +6,7 @@ import { recipeRepository } from "../dataLayer/repositories/recipeRepository.js"
 import { unitOfWork } from "../dataLayer/unitOfWork.js";
 import { Recipe } from "../entities/recipe.js";
 import { RecipeRecipeCategory } from "../entities/recipeRecipeCategory.js";
-import { ValidationError } from "../errors.js";
+import { AuthorizationError, ValidationError } from "../errors.js";
 import { Controller } from "./controller.js";
 
 class RecipeController extends Controller {
@@ -52,9 +52,11 @@ class RecipeController extends Controller {
         }
 
         await unitOfWork.commitAsync();
+
+        return this.serialize(recipe.id);
     }
 
-    async updateRecipe(input, context) {
+    async updateRecipeAsync(recipeId, input, context) {
         if (!input) {
             throw ValidationError("Recept nemohl být vytvořen. Nevalidní vstup.");
         }
@@ -64,27 +66,38 @@ class RecipeController extends Controller {
         let username = context.authorization.username;
         let author = this.getAuthor(username);
 
-        let recipe = new Recipe(input.title, author.id, input.longDescription, input.preparationLength, input.servingSize);
-        unitOfWork.insert(recipe);
-
-        for (let categoryId of input.recipeCategories) {
-            unitOfWork.insert(new RecipeRecipeCategory(recipe.id, categoryId));
+        let recipe = recipeRepository.getById(recipeId);
+        if (!recipe) {
+            throw new ValidationError(`Nelze upravit recept. Recept s id '${recipeId}' neexistuje`);
         }
+
+        recipe.title = input.title;
+        recipe.authorId = author.id;
+        recipe.longDescription = input.longDescription;
+        recipe.preparationLength = input.preparationLength;
+        recipe.servingSize = input.servingSize;
+
+        unitOfWork.update(recipe);
 
         await unitOfWork.commitAsync();
     }
 
-    getAuthor(username) {
-        let loginAccount = loginAccountRepository.getByUsername(username);
-        if (!loginAccount) {
-            throw new ValidationError("Neexistující uživatel.");
-        }
-        let author = authorRepository.getById(loginAccount.authorId);
-        if (!author) {
-            throw new ValidationError("Neexistující autor.");
+    async deleteRecipe(recipeId) {
+        let username = context.authorization.username;
+        let author = this.getAuthor(username);
+
+        let recipe = recipeRepository.getById(recipeId);
+        if (!recipe) {
+            throw new ValidationError(`Nelze upravit recept. Recept s id '${recipeId}' neexistuje`);
         }
 
-        return author;
+        if (author.id !== recipe.authorId) {
+            throw new AuthorizationError(`Uživatel ${username} nemá práva pro odstranění receptu.`);
+        }
+
+        unitOfWork.delete(recipe);
+
+        await unitOfWork.commitAsync();
     }
 
     validate(input) {

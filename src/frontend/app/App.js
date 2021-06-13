@@ -11,9 +11,9 @@ import Login from "./pages/Login";
 import Categories from "./pages/Categories";
 import './components/Env.css';
 import Recipes from "./pages/RecipeListPage";
-import AddRecipe from "./pages/AddRecipe";
+import RecipeAdd from "./pages/RecipeAdd";
 import RecipeDetail from './pages/RecipeDetail';
-import EditRecipe from './pages/EditRecipe';
+import RecipeEdit from './pages/RecipeEdit';
 
 const routes = {
     '/': () => <IndexPage />,
@@ -23,9 +23,9 @@ const routes = {
     '/recipes': () => <Recipes />,
     '/recipes/:recipeId': ({ recipeId }) => <RecipeDetail recipeId={recipeId} />,
     '/contact': () => <AuthorListPage />,
-    '/addrecipe' : () => <AddRecipe />,
+    '/addrecipe' : () => <RecipeAdd />,
     '/login': () => <Login />,
-    '/recipes/:recipeId/edit': ({ recipeId }) => <EditRecipe recipeId={recipeId} />
+    '/recipes/:recipeId/edit': ({ recipeId }) => <RecipeEdit recipeId={recipeId} />
 }
  
 const App = () => {

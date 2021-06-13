@@ -13,11 +13,11 @@ export default class RecipeEditForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: this.props.model.id,
-            title: this.props.model.title ?? "",
-            servingSize: this.props.model.servingSize ?? 0,
-            preparationLength: this.props.model.preparationLength ?? 0,
-            longDescription: this.props.model.longDescription ?? ""
+            id: this.props.model?.id,
+            title: this.props.model?.title ?? "",
+            servingSize: this.props.model?.servingSize ?? 0,
+            preparationLength: this.props.model?.preparationLength ?? 0,
+            longDescription: this.props.model?.longDescription ?? ""
          };
 
          apiClient.getRecipeCategories((data) => this.setState({ ...this.state, recipeCategories: data }))
@@ -46,8 +46,10 @@ export default class RecipeEditForm extends Component {
              servingSize: this.state.servingSize,
              preparationLength: this.state.preparationLength,
              longDescription: this.state.longDescription,
-             recipeCategories: this.state.selectedCategories
+             recipeCategories: this.state.selectedCategories ?? []
          }
+
+         this.props.onSubmit(data);
     }
 
     render() {
@@ -84,8 +86,4 @@ export default class RecipeEditForm extends Component {
             </Form>
         </>
     }
-}
-
-function getRecipeLink(recipeId) {
-    return `/edit/${recipeId}`;
 }
