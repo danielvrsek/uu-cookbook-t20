@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { A } from '@patched/hookrouter';
 import RecipeOverview from '../components/recipes/RecipeOverview';
-import { apiClient } from '../api/ApiClient'
-
+import { apiClient } from '../api/ApiClient';
+import '../components/recipes/RecipeDetailView.css';
 export default class Recipe extends Component {
 
     
@@ -22,8 +22,10 @@ render() {
         <h1>Recepty</h1>
         <br />
         <br />
+        <div className="link-text">
         <A href="/addrecipe"><button type="submit" className="btn btn-success">Přidat recept</button></A>
         <RecipeOverview recipes={this.state.data} />
+        </div>
     </>;
 }
 }

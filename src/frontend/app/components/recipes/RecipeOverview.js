@@ -13,8 +13,8 @@ export default class RecipeOverview extends Component {
 
     render() {
         return (
-            <div className="container px-4 py-5" id="custom-cards">
-                <div className="row row-cols-3 row-cols-lg-5 align-items-stretch g-4 py-5">
+            <div className="link-text container px-4 py-5" id="custom-cards">
+                <div className="link-text row row-cols-3 row-cols-lg-5 align-items-stretch g-4 py-5">
                     {this.props.recipes.map(recipe =>
                         <RecipeThumbnail key={recipe.id} {...recipe} />
                     )}

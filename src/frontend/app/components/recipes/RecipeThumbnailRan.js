@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import { A } from '@patched/hookrouter/dist/Link';
+import './RecipeDetailView.css'
 export default class RecipeThumbnailRan extends Component {
 	constructor(props) {
 		super(props);
@@ -15,6 +16,7 @@ export default class RecipeThumbnailRan extends Component {
 
 		return (
 			<div className="col">
+                <A className="link-text" href={`/recipes/${this.props.id}`}>
 				<div className="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style={style}>
 					<div className="d-flex flex-column h-100 p-3 pb-2 text-white text-shadow-1">
 						<label className="pt-5 mt-4 mb-3 lh-1 fw-bold">{this.props.title}</label>
@@ -32,7 +34,7 @@ export default class RecipeThumbnailRan extends Component {
 						</ul>
 					</div>
 				</div>
-				
+				</A>
 				<br />
 			</div>
 
