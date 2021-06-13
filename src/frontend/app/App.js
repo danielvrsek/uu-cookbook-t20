@@ -13,7 +13,7 @@ import './components/Env.css';
 import Recipes from "./pages/Recipes";
 import AddRecipe from "./pages/AddRecipe";
 import RecipeDetail from './pages/RecipeDetail';
-
+import EditRecipe from './pages/EditRecipe';
 
 const routes = {
     '/': () => <IndexPage />,
@@ -24,7 +24,8 @@ const routes = {
     '/recipes/:recipeId': ({ recipeId }) => <RecipeDetail recipeId={recipeId} />,
     '/contact': () => <AuthorListPage />,
     '/addrecipe' : () => <AddRecipe />,
-    '/login': () => <Login />
+    '/login': () => <Login />,
+    '/edit/': () => <EditRecipe />
 }
  
 const App = () => {

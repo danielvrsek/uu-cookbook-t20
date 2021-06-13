@@ -68,9 +68,9 @@ function seedRecipe() {
         new Recipe("Extra čokoládový cheesecake s malinami", authors[0].id, "Jednoduché, rychlé a velmi chutné. Pokud jste milovníkem čokolády, doporučuji vyzkoušet. Zamilujete se. Čokoládový mascarpone krém, na vrchu jemná čokoládová poleva, která se při krájení vůbec neláme a jako při každém cheesecaku, sušenkový křupavý základ.", 35, 4, "58347411_71564828563b06_680.jpg"),
         new Recipe("Tříbarevný dort bez pečení", authors[1].id, "Neobvyklý dezert, který si zamilujete. Nejen kvůli rychlé přípravě, ale také díky osvěžující chuti, která během teplých letních dnů jistě potěší. Bez pečení, bez želatiny, bez zdlouhavé přípravy. Opravdu za 15 minut to máte připraveno ve formě a už jen vyčkat, dokud to ztuhne.", 15, 3, "76857705_523e1114e9e906_680.jpg"),
         new Recipe("Lotusové dortíčky", authors[1].id, "Znáte sušenky Lotus? Vyzkoušejte připravit tento fantastický dezert.", 55, 4, "56805520_10a417285b8ff5_680.jpg"),
-        new Recipe("Malinovy chesecake", authors[2].id, "Dlouhy popis", 50, 5, ""),
-        new Recipe("Chesecake z lesnich plodu", authors[0].id, "Dlouhy popis", 50, 5, ""),
-        new Recipe("Misarezy", authors[3].id, "Dlouhy popis", 50, 5, "")
+        new Recipe("Malinovy chesecake", authors[2].id, "Dlouhy popis", 50, 5, "rasp_cheesecake.jpg"),
+        new Recipe("Chesecake z lesnich plodu", authors[0].id, "Dlouhy popis", 50, 5, "h389w574t.jpg"),
+        new Recipe("Misarezy", authors[3].id, "Dlouhy popis", 50, 5, "misarezy.jpg")
     ];
     unitOfWork.insertAll(data);
 }
