@@ -13,6 +13,7 @@ import Contact from "./pages/Contact";
 import './components/Env.css';
 import Recipes from "./pages/Recipes";
 import AddRecipe from "./pages/AddRecipe";
+import EditRecipe from './pages/EditRecipe';
 
 const routes = {
     '/': () => <IndexPage />,
@@ -22,7 +23,8 @@ const routes = {
     '/recipe': () => <Recipes />,
     '/contact': () => <AuthorListPage />,
     '/addrecipe' : () => <AddRecipe />,
-    '/login': () => <Login />
+    '/login': () => <Login />,
+    '/edit/': () => <EditRecipe />
 }
  
 const App = () => {

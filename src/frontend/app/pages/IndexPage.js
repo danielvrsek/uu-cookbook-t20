@@ -17,7 +17,7 @@ export default class IndexPage extends Component{
 
         return <>
             <h1>Tipy na dnešek!</h1>
-            
+
             <RecipeOverviewRan recipes={this.state.data} />
 
         </>;
