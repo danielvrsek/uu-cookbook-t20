@@ -48,7 +48,8 @@ Token: eyJ1c2VybmFtZSI6ImRhbmllbGtvIiwicm9sZSI6ImVkaXRvciJ9
     "title": "Test",
     "longDescription": "Dlouhy popis",
     "preparationLength": 50,
-    "servingSize": 10
+    "servingSize": 10,
+    "recipeCategories": []
 }
 
 ### Get all recipes

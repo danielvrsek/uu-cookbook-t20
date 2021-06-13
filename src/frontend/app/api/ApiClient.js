@@ -18,6 +18,10 @@ class ApiClient {
         this.fetchApi("GET", "/api/recipes", null, callback);
     }
 
+    getRecipe(recipeId, callback) {
+        this.fetchApi("GET", `/api/recipes/${recipeId}`, null, callback);
+    }
+
     createRecipe(input, callback) {
         this.fetchApi("POST", "/api/recipes", input, callback);
     }

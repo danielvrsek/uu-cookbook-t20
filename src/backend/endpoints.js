@@ -33,6 +33,10 @@ export function declareEndpoints(app) {
         handleResponseAsync(res, () => recipeController.getRecipes(req.query));
     });
 
+    app.get('/api/recipes/:recipeId', function (req, res) {
+        handleResponseAsync(res, () => recipeController.getRecipe(req.params.recipeId));
+    });
+
     app.post('/api/recipes', function (req, res) {
         handleAuthorizedResponseAsync(req, res, (context) => recipeController.createRecipeAsync(req.body, context));
     });

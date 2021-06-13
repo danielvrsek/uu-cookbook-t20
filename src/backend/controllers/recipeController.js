@@ -21,6 +21,15 @@ class RecipeController extends Controller {
         return this.serialize(data);
     }
 
+    getRecipes(recipeId) {
+        let recipe = recipeRepository.getById(recipeId);
+        if (!recipe) {
+            throw new ValidationError(`Recept s id ${recipeId} neexistuje.`);
+        }
+
+        return this.serialize(recipe);
+    }
+
     async createRecipeAsync(input, context) {
         if (!input) {
             throw ValidationError("Recept nemohl být vytvořen. Nevalidní vstup.");

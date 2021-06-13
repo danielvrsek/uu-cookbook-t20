@@ -112,6 +112,14 @@
       "servingSize": 5,
       "thumbnail": "",
       "id": "fb6aacab-6fbe-e792-0db1-b9322c89909d"
+    },
+    {
+      "title": "Test",
+      "authorId": "eb62261c-01c8-d829-6951-9107895dedc3",
+      "longDescription": "Dlouhy popis",
+      "preparationLength": 50,
+      "servingSize": 10,
+      "id": "72f8e9b4-192c-3f72-eb55-9301f97d1216"
     }
   ],
   "recipeCategory": [

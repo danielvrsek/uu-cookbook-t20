@@ -16,7 +16,6 @@ export default class RecipeOverview extends Component {
                 <div className="row row-cols-3 row-cols-lg-5 align-items-stretch g-4 py-5">
                     {this.props.recipes.map(recipe =>
                         <RecipeThumbnail key={recipe.id} {...recipe} />
-                        
                     )}
                 </div>
             </div>

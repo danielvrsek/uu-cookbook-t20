@@ -9,17 +9,19 @@ import IndexPage from "./pages/IndexPage";
 import './App.css';
 import Login from "./pages/Login";
 import Categories from "./pages/Categories";
-import Contact from "./pages/Contact";
 import './components/Env.css';
 import Recipes from "./pages/Recipes";
 import AddRecipe from "./pages/AddRecipe";
+import RecipeDetail from './pages/RecipeDetail';
+
 
 const routes = {
     '/': () => <IndexPage />,
     '/authors': () => <AuthorListPage />,
     '/authors/:authorId': ({ authorId }) => <AuthorEditPage authorId={authorId} />,
     '/categories': () => <Categories />,
-    '/recipe': () => <Recipes />,
+    '/recipes': () => <Recipes />,
+    '/recipes/:recipeId': ({ recipeId }) => <RecipeDetail recipeId={recipeId} />,
     '/contact': () => <AuthorListPage />,
     '/addrecipe' : () => <AddRecipe />,
     '/login': () => <Login />
