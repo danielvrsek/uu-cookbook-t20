@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import './Recipe.css';
 import { A } from '@patched/hookrouter';
-import RecipeOverview from './RecipeOverview';
-import { apiClient } from '../../api/ApiClient'
+import RecipeOverview from '../components/recipes/RecipeOverview';
+import { apiClient } from '../api/ApiClient'
 
 export default class Recipe extends Component {
 

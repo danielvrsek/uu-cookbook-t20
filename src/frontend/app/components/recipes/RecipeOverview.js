@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RecipeThumbnail from './RecipeThumbnail';
+import './RecipeOverview.css';
 
 export default class RecipeOverview extends Component {
     constructor(props) {

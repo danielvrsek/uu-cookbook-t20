@@ -10,7 +10,7 @@ import './App.css';
 import Login from "./pages/Login";
 import Categories from "./pages/Categories";
 import './components/Env.css';
-import Recipes from "./pages/Recipes";
+import Recipes from "./pages/RecipeListPage";
 import AddRecipe from "./pages/AddRecipe";
 import RecipeDetail from './pages/RecipeDetail';
 import EditRecipe from './pages/EditRecipe';

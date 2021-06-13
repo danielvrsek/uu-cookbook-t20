@@ -1,3 +1,11 @@
 .recipe-thumbnail {
     border-radius: 8px;
 }
+
+.recipe-description {
+    padding-top: 1rem;
+}
+
+.recipe-title {
+    padding-bottom: 1rem;
+}

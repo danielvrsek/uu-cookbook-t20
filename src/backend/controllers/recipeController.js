@@ -21,7 +21,7 @@ class RecipeController extends Controller {
         return this.serialize(data);
     }
 
-    getRecipes(recipeId) {
+    getRecipe(recipeId) {
         let recipe = recipeRepository.getById(recipeId);
         if (!recipe) {
             throw new ValidationError(`Recept s id ${recipeId} neexistuje.`);
