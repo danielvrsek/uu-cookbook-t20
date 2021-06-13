@@ -21,7 +21,7 @@ export default class RecipeAdd extends Component {
 
     render() {
         return <>
-            <h1>Upravit recept</h1>
+            <h1>Vytvořit recept</h1>
             <RecipeEditForm onSubmit={this.handleSubmit} />
         </>
     }

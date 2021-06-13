@@ -3,6 +3,7 @@ import { A } from '@patched/hookrouter';
 import RecipeOverview from '../components/recipes/RecipeOverview';
 import { apiClient } from '../api/ApiClient';
 import '../components/recipes/RecipeDetailView.css';
+import Select from '../common/forms/Select';
 export default class Recipe extends Component {
 
     
@@ -11,10 +12,11 @@ constructor(props) {
 
     this.state = {};
     apiClient.getRecipes((data) => this.setState({ data }))
+    apiClient.getRecipeCategories((data) => this.setState({ recipeCategories: data }))
 }
 
 render() {
-    if (!this.state.data) {
+    if (!this.state.data || !this.state.recipeCategories) {
         return "Loading...";
     }
 

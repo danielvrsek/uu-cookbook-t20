@@ -13,7 +13,6 @@ export const RecipeDetailView = (props) => {
 
     return <>
         <div className="container">
-
             <div className="recipe-btnEdit">
             <A href={`/recipes/${props.id}/edit`}><i className="fas fa-edit"></i></A> &nbsp; <A onClick={handleDelete} className="recipe-btnDel" href="#"><i className="recipe-btnDel fas fa-trash-alt"></i></A>
             </div>

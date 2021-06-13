@@ -22,6 +22,7 @@ export default class RecipeEdit extends Component{
         }
 
         return <>
+            <h1>Upravit recept</h1>
             {this.state.data && <RecipeEditForm model={this.state.data} onSubmit={this.handleSubmit} />}
         </>;
     }
