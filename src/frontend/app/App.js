@@ -14,17 +14,15 @@ import './components/Env.css';
 import Recipes from "./pages/Recipes";
 import AddRecipe from "./pages/AddRecipe";
 
-
-
 const routes = {
     '/': () => <IndexPage />,
     '/authors': () => <AuthorListPage />,
     '/authors/:authorId': ({ authorId }) => <AuthorEditPage authorId={authorId} />,
-    '/login': () => <Login />,
     '/categories': () => <Categories />,
     '/recipe': () => <Recipes />,
     '/contact': () => <AuthorListPage />,
-    '/addrecipe' : () => <AddRecipe />
+    '/addrecipe' : () => <AddRecipe />,
+    '/login': () => <Login />
 }
  
 const App = () => {

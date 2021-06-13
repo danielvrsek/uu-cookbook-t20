@@ -5,6 +5,7 @@ import PasswordInput from '../common/forms/PasswordInput';
 import { apiClient } from '../api/ApiClient';
 import LoginButton from '../common/forms/LoginButton';
 import { Form } from '../common/forms/Form';
+import { navigate } from '@patched/hookrouter';
 
 export default class LoginForm extends Component {
 
@@ -16,7 +17,6 @@ export default class LoginForm extends Component {
 			username: "",
 			password: ""
 		};
-
 	}
 
 	handleInputChange(name, value) {
@@ -32,7 +32,7 @@ export default class LoginForm extends Component {
 			password: this.state.password
 		};
 
-		apiClient.login(data, () => { })
+		apiClient.login(data, () => navigate('/'));
 	}
 
 	render() {

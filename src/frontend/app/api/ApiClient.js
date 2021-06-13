@@ -1,14 +1,13 @@
+import { tokenStorage } from "../utils/TokenStorage";
+
 class ApiClient {
     constructor(baseUri) {
         this.baseUri = baseUri;
-
-        this.login = this.login.bind(this);
-        this.fetchApi = this.fetchApi.bind(this);
     }
 
     login(credentials, callback) {
         let tokenCallback = (res) => {
-            this.token = res;
+            tokenStorage.saveToken(res);
             callback(res);
         }
 
@@ -39,35 +38,15 @@ class ApiClient {
         this.fetchApi("PUT", `/api/authors/${authorId}`, payload, callback);
     }
 
-    postFile(url, body, callback) {
-        let options = {
-            method,
-            headers: {
-                "Token": this.token,
-
-            },
-            body: body && JSON.stringify(body)
-        };
-        if (this.token) {
-            options.headers["Token"] = this.token;
-        }
-        if (body) {
-            options.headers["Content-Type"] = "application/json";
-        }
-    
-        return fetch(this.baseUri + url, options)
-            .then((res) => res.json())
-            .then((res) => callback(res.data));
-    }
-
     fetchApi(method, url, body, callback) {
         let options = {
             method,
             headers: {},
             body: body && JSON.stringify(body)
         };
-        if (this.token) {
-            options.headers["Token"] = this.token;
+        let token = tokenStorage.retrieveToken();
+        if (token) {
+            options.headers["Token"] = token;
         }
         if (body) {
             options.headers["Content-Type"] = "application/json";

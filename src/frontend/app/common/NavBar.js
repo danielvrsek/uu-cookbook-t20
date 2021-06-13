@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
-import { A } from '@patched/hookrouter';
+import { A, navigate } from '@patched/hookrouter';
 import { NavItems } from '../components/NavItems';
 import './NavBar.css';
 import '../components/Button';
 import { Button } from '../components/Button';
 import '../components/LoginForm.css'
-
+import { tokenStorage } from '../utils/TokenStorage';
 
 class NavBar extends Component {
-    
-    state = { clicked: false,
-            loginClicked: false };
+    constructor(props) {
+        super(props);
+
+        tokenStorage.subscribe((token) => this.setState({
+            ...this.state,
+            isLoggedIn: token ? true : false
+        }));
+
+        let token = tokenStorage.retrieveToken();
+        this.state = { 
+            isLoggedIn: token ? true : false,
+            clicked: false,
+            loginClicked: false 
+        };
+    }
 
     handleLoginClick = () => {
         this.setState({loginClicked: !this.state.loginClicked});
@@ -40,11 +52,22 @@ class NavBar extends Component {
                     })}
                     
                 </ul>
-                <div><A href ="/login">
-                    <Button>Přihlásit se</Button></A>
-                    </div>
+                <div>
+                    {this.state.isLoggedIn ?
+                        <Button onClick={this.logout}>Odhlásit se</Button>
+                    :
+                        <A href ="/login">
+                            <Button>Přihlásit se</Button>
+                        </A>}
+                </div>
             </nav>
         )
+    }
+
+    logout() {
+        tokenStorage.removeToken();
+        console.log("logout")
+        navigate("/");
     }
 }
 
