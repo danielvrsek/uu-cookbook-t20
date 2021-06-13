@@ -46,6 +46,10 @@ class ApiClient {
         this.fetchApi("PUT", `/api/authors/${authorId}`, payload, callback);
     }
 
+    deleteRecipe(recipeId, callback) {
+        this.fetchApi("DELETE", `/api/recipes/${recipeId}`, null, callback);
+    }
+
     fetchApi(method, url, body, callback) {
         let options = {
             method,
