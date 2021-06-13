@@ -27,18 +27,25 @@ export default class Tagger extends Component {
     }
 
     handleClick(item) {
-        let items = this.state.items.map(x => x.key).filter(x => x !== item.key);
-
         this.setState({
             ...this.state,
-            input: this.props.items.filter(e => !items.includes(e.key))[0],
             items: this.state.items.filter(x => x.key !== item.key)
         });
 
         this.props.onChange(this.state.items);
     }
 
-    handleInputChange(value) {
+    handleInputChange(name, value) {
+        this.setState({
+            ...this.setState,
+            input: {
+                key: value,
+                value
+            }
+        })
+    }
+
+    handleSelectChange(value) {
         this.setState({
             ...this.setState,
             input: value
@@ -46,14 +53,12 @@ export default class Tagger extends Component {
     }
 
     handleSubmit() {
-        if (!this.state.input) {
-            return;
-        }
+        let items = [ ...this.state.items, this.state.input];
 
         this.setState({
             ...this.state,
-            input: this.getRemainingItems().filter(e => this.state.input.key !== e.key)[0],
-            items: [ ...this.state.items, this.state.input]
+            input: this.props.items.filter(e => !items.map(x => x.key).includes(e.key))[0],
+            items: items
         });
 
         this.props.onChange(this.state.items);
@@ -70,18 +75,17 @@ export default class Tagger extends Component {
                 <label className="text-secondary">
                     {this.props.label}:
                 </label>
-                <Select data={items} selectedItem={defaultItem} onChange={this.handleInputChange} />
+                <Select data={items} selectedItem={this.state.input} onChange={this.handleSelectChange} />
                 <button disabled={disabled} className="btn btn-secondary" type="button" onClick={this.handleSubmit}>Přidat</button>
             </>
         } else {
             const handleKeyDown = (event) => {
                 if (event.key === 'Enter') {
-                    console.log("enter");
                     this.handleSubmit();
                 }
             }
 
-            selector = <TextInput name="itemName" value={this.state.input} label={this.props.label} onChange={(name, value) => this.handleInputChange(value)} onKeyDown={handleKeyDown} />;
+            selector = <TextInput name="itemName" value={this.state.input} label={this.props.label} onChange={this.handleInputChange} onKeyDown={handleKeyDown} />;
         }
 
         return (
