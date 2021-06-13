@@ -52,6 +52,9 @@ Token: eyJ1c2VybmFtZSI6ImRhbmllbGtvIiwicm9sZSI6ImVkaXRvciJ9
     "recipeCategories": []
 }
 
+### Delete recipe
+DELETE http://localhost:8080/api/recipes/c63d812e-71cf-2fe5-64fb-67a692ecad0f
+
 ### Get all recipes
 GET http://localhost:8080/api/recipes
 
